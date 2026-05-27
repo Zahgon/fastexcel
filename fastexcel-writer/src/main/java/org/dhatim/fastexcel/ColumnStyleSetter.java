@@ -17,7 +17,6 @@ package org.dhatim.fastexcel;
 
 import java.util.Collections;
 import java.util.HashSet;
-
 import static org.dhatim.fastexcel.Worksheet.MAX_ROWS;
 
 /**
@@ -51,17 +50,16 @@ public class ColumnStyleSetter extends GenericStyleSetter<ColumnStyleSetter> {
      * done otherwise style changes are lost!</b>
      */
     public void set() {
-        super.setStyle(false, new HashSet<>(Collections.singletonList(column.getStyle())), column::applyStyle);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     protected Range getRange() {
-        int colNumber = column.getColNumber();
-        return column.getWorksheet().range(0, colNumber, MAX_ROWS - 1, colNumber);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     protected ColumnStyleSetter getThis() {
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

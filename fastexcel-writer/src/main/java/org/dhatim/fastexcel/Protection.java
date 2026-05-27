@@ -20,15 +20,12 @@ public class Protection {
 
     @Override
     public int hashCode() {
-        return options.hashCode();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Protection that = (Protection) o;
-        return Objects.equals(options, that.options);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -38,11 +35,6 @@ public class Protection {
      * @throws IOException If an I/O error occurs.
      */
     void write(Writer w) throws IOException {
-        w.append("<protection ");
-        for (Map.Entry<ProtectionOption, Boolean> option : options.entrySet()) {
-            w.append(option.getKey().getName()).append("=\"").append(option.getValue().toString()).append("\" ");
-        }
-        w.append("/>");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

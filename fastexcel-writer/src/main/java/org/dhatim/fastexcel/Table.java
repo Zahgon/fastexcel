@@ -3,11 +3,17 @@ package org.dhatim.fastexcel;
 import java.io.IOException;
 
 public class Table {
+
     int index;
+
     private String name;
+
     private String displayName;
+
     private boolean totalsRowShown = false;
+
     private final Range range;
+
     private final String[] headers;
 
     private final TableStyleInfo styleInfo = new TableStyleInfo(this);
@@ -26,25 +32,23 @@ public class Table {
     }
 
     public Table setName(String name) {
-        this.name = name;
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Table setDisplayName(String displayName) {
-        this.displayName = displayName;
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Table setTotalsRowShown(boolean totalsRowShown) {
-        this.totalsRowShown = totalsRowShown;
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public TableStyleInfo styleInfo() {
-        return styleInfo;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public class TableStyleInfo {
+
         private final Table table;
 
         TableStyleInfo(Table table) {
@@ -52,62 +56,41 @@ public class Table {
         }
 
         private String name;
+
         private boolean showFirstColumn = false;
+
         private boolean showLastColumn = false;
+
         private boolean showRowStripes = true;
+
         private boolean showColumnStripes = false;
 
         public TableStyleInfo setStyleName(String name) {
-            this.name = name;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public TableStyleInfo setShowFirstColumn(boolean showFirstColumn) {
-            this.showFirstColumn = showFirstColumn;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public TableStyleInfo setShowLastColumn(boolean showLastColumn) {
-            this.showLastColumn = showLastColumn;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public TableStyleInfo setShowRowStripes(boolean showRowStripes) {
-            this.showRowStripes = showRowStripes;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public TableStyleInfo setShowColumnStripes(boolean showColumnStripes) {
-            this.showColumnStripes = showColumnStripes;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public void write(Writer w) throws IOException {
-            w.append("<tableStyleInfo name=\"" + (name == null || "".equals(name) ? "TableStyleMedium2" : styleInfo.name) + "\" ");
-            w.append("showFirstColumn=\"" + (showFirstColumn ? 1 : 0) + "\" ");
-            w.append("showLastColumn=\"" + (showLastColumn ? 1 : 0) + "\" ");
-            w.append("showRowStripes=\"" + (showRowStripes ? 1 : 0) + "\" ");
-            w.append("showColumnStripes=\"" + (showColumnStripes ? 1 : 0) + "\"/>");
-            w.append("</table>");
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     void write(Writer w) throws IOException {
-        w.append("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>");
-        w.append("<table xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" ");
-        w.append("id=\"" + index + "\" ");
-        w.append("name=\"" + (name == null || name.isEmpty() ? "Table" + index : XmlEscapeHelper.escape(name)) + "\" ");
-        w.append("displayName=\"" + (displayName == null || displayName.isEmpty() ? "Table" + index : XmlEscapeHelper.escape(displayName)) + "\" ");
-        w.append("ref=\"" + range.toString() + "\" ");
-        w.append("totalsRowShown=\"" + (totalsRowShown ? 1 : 0) + "\">");
-        w.append("<autoFilter ref=\"" + range.toString() + "\"/>");
-        int count = range.getRight() - range.getLeft() + 1;
-        w.append("<tableColumns count=\"" + count + "\">");
-        for (int i = 0; i < count; i++) {
-            w.append("<tableColumn id=\"" + (i + 1) + "\" name=\"" + XmlEscapeHelper.escape(headers[i]) + "\"/>");
-        }
-        w.append("</tableColumns>");
-        styleInfo.write(w);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

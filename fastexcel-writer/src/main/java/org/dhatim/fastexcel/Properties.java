@@ -11,122 +11,100 @@ public class Properties {
 
     //*****  core properties  *****
     private String title;
+
     private String subject;
+
     // alias:Tags
     private String keywords;
+
     // alias:Comments
     private String description;
+
     private String category;
+
     //*****  app properties  *****
     private String manager;
+
     private String company;
+
     private String hyperlinkBase;
 
     //***** custom properties *****
     private Set<CustomProty> customProperties = Collections.synchronizedSet(new LinkedHashSet<>());
 
     String getTitle() {
-        return title;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Properties setTitle(String title) {
-        if (title != null && title.length() > 65536) {
-            throw new IllegalStateException("The length of title must be less than or equal to 65536: " + title.length());
-        }
-        this.title = title;
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     String getSubject() {
-        return subject;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Properties setSubject(String subject) {
-        if (subject != null && subject.length() > 65536) {
-            throw new IllegalStateException("The length of subject must be less than or equal to 65536: " + subject.length());
-        }
-        this.subject = subject;
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     String getKeywords() {
-        return keywords;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Properties setKeywords(String keywords) {
-        if (keywords != null && keywords.length() > 65536) {
-            throw new IllegalStateException("The length of keywords must be less than or equal to 65536: " + keywords.length());
-        }
-        this.keywords = keywords;
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     String getDescription() {
-        return description;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Properties setDescription(String description) {
-        if (description != null && description.length() > 65536) {
-            throw new IllegalStateException("The length of description must be less than or equal to 65536: " + description.length());
-        }
-        this.description = description;
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     String getCategory() {
-        return category;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Properties setCategory(String category) {
-        if (category != null && category.length() > 65536) {
-            throw new IllegalStateException("The length of category must be less than or equal to 65536: " + category.length());
-        }
-        this.category = category;
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     String getManager() {
-        return manager;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Properties setManager(String manager) {
-        if (manager != null && manager.length() > 65536) {
-            throw new IllegalStateException("The length of manager must be less than or equal to 65536: " + manager.length());
-        }
-        this.manager = manager;
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     String getCompany() {
-        return company;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Properties setCompany(String company) {
-        if (company != null && company.length() > 65536) {
-            throw new IllegalStateException("The length of company must be less than or equal to 65536: " + title.length());
-        }
-        this.company = company;
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     String getHyperlinkBase() {
-        return hyperlinkBase;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Properties setHyperlinkBase(String hyperlinkBase) {
-        if (hyperlinkBase != null && hyperlinkBase.length() > 65536) {
-            throw new IllegalStateException("The length of hyperlinkBase must be less than or equal to 65536: " + title.length());
-        }
-        this.hyperlinkBase = hyperlinkBase;
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     interface CustomProty {
+
         void write(Writer w, int pid) throws IOException;
     }
 
     abstract class AbstractProperty<T> implements CustomProty {
+
         protected String key;
+
         protected T value;
 
         public AbstractProperty(String key, T value) {
@@ -136,101 +114,84 @@ public class Properties {
 
         @Override
         public int hashCode() {
-            return key.hashCode();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean equals(Object obj) {
-            if (obj == null) {
-                return false;
-            }
-            if (!(obj instanceof CustomProty)) {
-                return false;
-            }
-            return this.key.equals(((AbstractProperty<?>) obj).key);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     class TextProperty extends AbstractProperty<String> {
+
         public TextProperty(String key, String value) {
             super(key, value);
         }
 
         @Override
         public void write(Writer w, int pid) throws IOException {
-            w.append("<property fmtid=\"{D5CDD505-2E9C-101B-9397-08002B2CF9AE}\" pid=\"" + pid + "\" name=\"" + key + "\"><vt:lpwstr>");
-            w.appendEscaped(value);
-            w.append("</vt:lpwstr></property>");
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     class DateProperty extends AbstractProperty<Instant> {
+
         public DateProperty(String key, Instant value) {
             super(key, value);
         }
 
         @Override
         public void write(Writer w, int pid) throws IOException {
-            w.append("<property fmtid=\"{D5CDD505-2E9C-101B-9397-08002B2CF9AE}\" pid=\"" + pid + "\" name=\"" + key + "\"><vt:filetime>" + DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX").withZone(ZoneId.of("UTC")).format(value) + "</vt:filetime></property>");
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     class NumberProperty extends AbstractProperty<BigDecimal> {
+
         public NumberProperty(String key, BigDecimal value) {
             super(key, value);
         }
 
         @Override
         public void write(Writer w, int pid) throws IOException {
-            w.append("<property fmtid=\"{D5CDD505-2E9C-101B-9397-08002B2CF9AE}\" pid=\"" + pid + "\" name=\"" + key + "\"><vt:r8>" + value.toPlainString() + "</vt:r8></property>");
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     class BoolProperty extends AbstractProperty<Boolean> {
+
         public BoolProperty(String key, Boolean value) {
             super(key, value);
         }
 
         @Override
         public void write(Writer w, int pid) throws IOException {
-            w.append("<property fmtid=\"{D5CDD505-2E9C-101B-9397-08002B2CF9AE}\" pid=\"" + pid + "\" name=\"" + key + "\"><vt:bool>" + value.toString() + "</vt:bool></property>");
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     public Properties setTextProperty(String key, String textValue) {
-        customProperties.add(new TextProperty(key, textValue));
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Properties setDateProperty(String key, Instant dateValue) {
-        customProperties.add(new DateProperty(key, dateValue));
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Properties setNumberProperty(String key, BigDecimal numberValue) {
-        customProperties.add(new NumberProperty(key, numberValue));
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Properties setBoolProperty(String key, Boolean boolValue) {
-        customProperties.add(new BoolProperty(key, boolValue));
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public boolean hasCustomProperties() {
-        return customProperties.size() > 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     void writeCustomProperties(Writer w) throws IOException {
-        w.append("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>");
-        w.append("<Properties xmlns=\"http://schemas.openxmlformats.org/officeDocument/2006/custom-properties\" xmlns:vt=\"http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes\">");
-        Iterator<CustomProty> iterator = customProperties.iterator();
-        for (int i = 0; iterator.hasNext(); i++) {
-            int pid = i + 2;
-            CustomProty next = iterator.next();
-            next.write(w, pid);
-        }
-        w.append("</Properties>");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

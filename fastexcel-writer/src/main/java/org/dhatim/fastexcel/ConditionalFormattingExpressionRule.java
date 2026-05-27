@@ -6,7 +6,9 @@ import java.io.IOException;
  * A ConditionalFormattingExpressionRule defines a conditional formatting rule for a worksheet of type = "expression"
  */
 public class ConditionalFormattingExpressionRule extends ConditionalFormattingRule {
+
     protected final static String TYPE = "expression";
+
     protected final String expression;
 
     /**
@@ -28,9 +30,6 @@ public class ConditionalFormattingExpressionRule extends ConditionalFormattingRu
      */
     @Override
     public void write(Writer w) throws IOException {
-        w
-            .append("<cfRule type=\"").append(TYPE).append("\" priority=\"").append(priority).append("\" stopIfTrue=\"").append(stopIfTrue ? "1" : "0").append("\" dxfId=\"").append(dxfId).append("\">")
-            .append("<formula>").append(expression).append("</formula>")
-            .append("</cfRule>");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

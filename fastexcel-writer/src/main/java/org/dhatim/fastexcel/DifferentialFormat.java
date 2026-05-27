@@ -4,14 +4,21 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class DifferentialFormat {
+
     private final String valueFormatting;
+
     private final Font font;
+
     private final Fill fill;
+
     private final Border border;
+
     private final Alignment alignment;
+
     private final Protection protection;
+
     private int numFmtId;
-    
+
     /**
      * Constructor.
      *
@@ -30,35 +37,23 @@ public class DifferentialFormat {
         this.alignment = alignment;
         this.protection = protection;
     }
-    
+
     public String getValueFormatting() {
-        return valueFormatting;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-    
+
     public void setNumFmtId(int numFmtId) {
-        this.numFmtId = numFmtId;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-    
+
     @Override
     public int hashCode() {
-        return Objects.hash(numFmtId, font, fill, border, alignment, protection);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(Object obj) {
-        boolean result;
-        if (obj != null && obj.getClass() == this.getClass()) {
-            DifferentialFormat other = (DifferentialFormat) obj;
-            result = Objects.equals(valueFormatting, other.valueFormatting)
-                    && Objects.equals(font, other.font)
-                    && Objects.equals(fill, other.fill)
-                    && Objects.equals(border, other.border)
-                    && Objects.equals(alignment, other.alignment)
-                    && Objects.equals(protection, other.protection);
-        } else {
-            result = false;
-        }
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -68,25 +63,6 @@ public class DifferentialFormat {
      * @throws IOException If an I/O error occurs.
      */
     void write(Writer w) throws IOException {
-        w.append("<dxf>");
-        if (valueFormatting != null) {
-            w.append("<numFmt numFmtId=\"").append(numFmtId).append("\" formatCode=\"").append(valueFormatting).append("\"/>");
-        }
-        if (font != null) {
-            font.write(w);
-        }
-        if (fill != null) {
-            fill.write(w);
-        }
-        if (border != null) {
-            border.write(w);
-        }
-        if (alignment != null) {
-            alignment.write(w);
-        }
-        if (protection != null) {
-            protection.write(w);
-        }
-        w.append("</dxf>");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

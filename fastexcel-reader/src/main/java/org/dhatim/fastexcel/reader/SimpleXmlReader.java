@@ -28,6 +28,7 @@ import java.util.function.Consumer;
 class SimpleXmlReader implements Closeable {
 
     private final InputStream inputStream;
+
     private final XMLStreamReader reader;
 
     public SimpleXmlReader(XMLInputFactory factory, InputStream inputStream) throws XMLStreamException {
@@ -37,93 +38,58 @@ class SimpleXmlReader implements Closeable {
 
     @Override
     public void close() throws IOException {
-        inputStream.close();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public boolean goTo(BooleanSupplier predicate) throws XMLStreamException {
-        while (reader.hasNext()) {
-            reader.next();
-            if (predicate.getAsBoolean()) {
-                return true;
-            }
-        }
-        return false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public String getLocalName() {
-        return reader.getLocalName();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public boolean isStartElement(String elementName) {
-        return reader.isStartElement() && elementName.equals(reader.getLocalName());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public boolean isEndElement(String elementName) {
-        return reader.isEndElement() && elementName.equals(reader.getLocalName());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public boolean goTo(String elementName) throws XMLStreamException {
-        return goTo(() -> isStartElement(elementName));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public String getAttribute(String name) {
-        return reader.getAttributeValue(null, name);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public String getAttributeRequired(String name) throws XMLStreamException {
-        String value = getAttribute(name);
-        if(value == null) {
-            throw new XMLStreamException("missing required attribute "+name);
-        }
-        return value;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public String getAttribute(String namespace, String name) {
-        return reader.getAttributeValue(namespace, name);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Optional<String> getOptionalAttribute(String name) {
-        return Optional.ofNullable(reader.getAttributeValue(null, name));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Integer getIntAttribute(String name) {
-        String value = reader.getAttributeValue(null, name);
-        return value == null ? null : Integer.valueOf(value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public void forEach(String startChildElement, String untilEndElement, Consumer<SimpleXmlReader> consumer) throws XMLStreamException {
-        while (goTo(() -> isStartElement(startChildElement) || isEndElement(untilEndElement))) {
-            if (untilEndElement.equals(getLocalName())) {
-                break;
-            }
-            consumer.accept(this);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public String getValueUntilEndElement(String elementName) throws XMLStreamException {
-        return getValueUntilEndElement(elementName, "");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public String getValueUntilEndElement(String elementName, String skipping) throws XMLStreamException {
-        StringBuilder sb = new StringBuilder();
-        int childElement = 1;
-        while (reader.hasNext()) {
-            int type = reader.next();
-            if (type == XMLStreamReader.CDATA || type == XMLStreamReader.CHARACTERS || type == XMLStreamReader.SPACE) {
-                sb.append(reader.getText());
-            } else if (type == XMLStreamReader.START_ELEMENT) {
-                if(skipping.equals(reader.getLocalName())) {
-                    getValueUntilEndElement(reader.getLocalName());
-                }else {
-                    childElement++;
-                }
-            } else if (type == XMLStreamReader.END_ELEMENT) {
-                childElement--;
-                if (elementName.equals(reader.getLocalName()) && childElement == 0) {
-                    break;
-                }
-            }
-        }
-        return sb.toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

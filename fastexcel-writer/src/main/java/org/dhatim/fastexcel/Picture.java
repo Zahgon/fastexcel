@@ -23,17 +23,21 @@ import java.io.IOException;
 public class Picture {
 
     private final int id;
+
     private final String name;
+
     private final PictureAnchor anchor;
+
     private final byte[] imageData;
+
     private final ImageType imageType;
+
     private final boolean lockAspectRatio;
 
     // Relationship ID (set when writing)
     private String relationshipId;
 
-    Picture(int id, String name, PictureAnchor anchor, byte[] imageData, ImageType imageType,
-            boolean lockAspectRatio) {
+    Picture(int id, String name, PictureAnchor anchor, byte[] imageData, ImageType imageType, boolean lockAspectRatio) {
         this.id = id;
         this.name = name != null ? name : "Picture " + id;
         this.anchor = anchor;
@@ -43,27 +47,27 @@ public class Picture {
     }
 
     void setRelationshipId(String relationshipId) {
-        this.relationshipId = relationshipId;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     String getRelationshipId() {
-        return relationshipId;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     int getId() {
-        return id;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     byte[] getImageData() {
-        return imageData;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     ImageType getImageType() {
-        return imageType;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     PictureAnchor getAnchor() {
-        return anchor;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -72,18 +76,14 @@ public class Picture {
      * @return Picture name
      */
     public String getName() {
-        return name;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Write the picture element to the drawing XML.
      */
     void write(Writer w) throws IOException {
-        if (anchor.isTwoCellAnchor()) {
-            writeTwoCellAnchor(w);
-        } else {
-            writeOneCellAnchor(w);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private void writeOneCellAnchor(Writer w) throws IOException {
@@ -106,7 +106,6 @@ public class Picture {
 
     private void writePicElement(Writer w) throws IOException {
         w.append("<xdr:pic>");
-
         // Non-visual properties
         w.append("<xdr:nvPicPr>");
         w.append("<xdr:cNvPr id=\"").append(id).append("\" name=\"");
@@ -118,7 +117,6 @@ public class Picture {
         }
         w.append("</xdr:cNvPicPr>");
         w.append("</xdr:nvPicPr>");
-
         // Blip fill (image reference)
         w.append("<xdr:blipFill>");
         if (imageType == ImageType.SVG) {
@@ -138,7 +136,6 @@ public class Picture {
         }
         w.append("<a:stretch><a:fillRect/></a:stretch>");
         w.append("</xdr:blipFill>");
-
         // Shape properties
         w.append("<xdr:spPr>");
         w.append("<a:xfrm>");
@@ -146,13 +143,11 @@ public class Picture {
         if (anchor.isTwoCellAnchor()) {
             w.append("<a:ext cx=\"0\" cy=\"0\"/>");
         } else {
-            w.append("<a:ext cx=\"").append(anchor.getWidthEmu()).append("\" cy=\"")
-              .append(anchor.getHeightEmu()).append("\"/>");
+            w.append("<a:ext cx=\"").append(anchor.getWidthEmu()).append("\" cy=\"").append(anchor.getHeightEmu()).append("\"/>");
         }
         w.append("</a:xfrm>");
         w.append("<a:prstGeom prst=\"rect\"><a:avLst/></a:prstGeom>");
         w.append("</xdr:spPr>");
-
         w.append("</xdr:pic>");
     }
 }

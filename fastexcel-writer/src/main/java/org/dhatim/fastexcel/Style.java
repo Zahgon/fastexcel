@@ -28,18 +28,22 @@ class Style {
      * Index of cached value formatting.
      */
     private final int valueFormatting;
+
     /**
      * Index of cached font.
      */
     private final int font;
+
     /**
      * Index of cached fill pattern.
      */
     private final int fill;
+
     /**
      * Index of cached border.
      */
     private final int border;
+
     /**
      * Alignment.
      */
@@ -72,24 +76,12 @@ class Style {
 
     @Override
     public int hashCode() {
-        return Objects.hash(valueFormatting, font, fill, border, alignment, protection);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(Object obj) {
-        boolean result;
-        if (obj != null && obj.getClass() == this.getClass()) {
-            Style other = (Style) obj;
-            result = Objects.equals(valueFormatting, other.valueFormatting)
-                    && Objects.equals(font, other.font)
-                    && Objects.equals(fill, other.fill)
-                    && Objects.equals(border, other.border)
-                    && Objects.equals(alignment, other.alignment)
-                    && Objects.equals(protection, other.protection);
-        } else {
-            result = false;
-        }
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -99,29 +91,6 @@ class Style {
      * @throws IOException If an I/O error occurs.
      */
     void write(Writer w) throws IOException {
-        w.append("<xf numFmtId=\"").append(valueFormatting).append("\" fontId=\"").append(font).append("\" fillId=\"").append(fill).append("\" borderId=\"").append(border).append("\" xfId=\"0\"");
-        if (border != 0) {
-            w.append(" applyBorder=\"1\"");
-        }
-
-        if (alignment == null && protection == null) {
-            w.append("/>");
-            return;
-        }
-        if (alignment != null) {
-            w.append(" applyAlignment=\"1\"");
-        }
-        if (protection != null) {
-            w.append(" applyProtection=\"1\"");
-        }
-
-        w.append('>');
-        if (alignment != null) {
-            alignment.write(w);
-        }
-        if (protection != null) {
-            protection.write(w);
-        }
-        w.append("</xf>");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

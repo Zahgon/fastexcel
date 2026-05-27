@@ -43,74 +43,92 @@ abstract class GenericStyleSetter<STYLE_SETTER extends GenericStyleSetter<STYLE_
      * Worksheet in which this styling is applied
      */
     private final Worksheet worksheet;
+
     /**
      * Value formatting.
      */
     private String valueFormatting;
+
     /**
      * RGB fill color.
      */
     private String fillColor;
+
     /**
      * RGB color for shading of alternate rows.
      */
     private String alternateShadingFillColor;
+
     /**
      * RGB color for shading Nth rows.
      */
     private String shadingFillColor;
+
     /**
      * Shading row frequency.
      */
     private int eachNRows;
+
     /**
      * Bold flag.
      */
     private Boolean bold;
+
     /**
      * Italic flag.
      */
     private Boolean italic;
+
     /**
      * Underlined flag.
      */
     private Boolean underlined;
+
     /**
      * Font name.
      */
     private String fontName;
+
     /**
      * Font size.
      */
     private BigDecimal fontSize;
+
     /**
      * RGB font color.
      */
     private String fontColor;
+
     /**
      * Strikethrough flag.
      */
     private Boolean strikethrough;
+
     /**
      * Horizontal alignment.
      */
     private String horizontalAlignment;
+
     /**
      * Vertical alignment.
      */
     private String verticalAlignment;
+
     /**
      * Wrap text flag.
      */
     private boolean wrapText;
+
     /**
      * Text rotation in degrees
      */
     private int rotation;
+
     /**
-    * Represents the indent level
-    */
+     * Represents the indent level
+     */
     private int indent;
+
     /**
      * Border.
      */
@@ -141,8 +159,7 @@ abstract class GenericStyleSetter<STYLE_SETTER extends GenericStyleSetter<STYLE_
      * @return This style setter.
      */
     public STYLE_SETTER format(String numberingFormat) {
-        this.valueFormatting = numberingFormat;
-        return getThis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -152,8 +169,7 @@ abstract class GenericStyleSetter<STYLE_SETTER extends GenericStyleSetter<STYLE_
      * @return This style setter.
      */
     public STYLE_SETTER fillColor(String rgb) {
-        this.fillColor = rgb;
-        return getThis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -163,8 +179,7 @@ abstract class GenericStyleSetter<STYLE_SETTER extends GenericStyleSetter<STYLE_
      * @return This style setter.
      */
     public STYLE_SETTER shadeAlternateRows(String rgb) {
-        this.alternateShadingFillColor = rgb;
-        return getThis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -175,9 +190,7 @@ abstract class GenericStyleSetter<STYLE_SETTER extends GenericStyleSetter<STYLE_
      * @return This style setter.
      */
     public STYLE_SETTER shadeRows(String rgb, int eachNRows) {
-        this.shadingFillColor = rgb;
-        this.eachNRows = eachNRows;
-        return getThis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -187,8 +200,7 @@ abstract class GenericStyleSetter<STYLE_SETTER extends GenericStyleSetter<STYLE_
      * @return This style setter.
      */
     public STYLE_SETTER fontColor(String rgb) {
-        this.fontColor = rgb;
-        return getThis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -198,8 +210,7 @@ abstract class GenericStyleSetter<STYLE_SETTER extends GenericStyleSetter<STYLE_
      * @return This style setter.
      */
     public STYLE_SETTER fontName(String name) {
-        this.fontName = name;
-        return getThis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -209,8 +220,7 @@ abstract class GenericStyleSetter<STYLE_SETTER extends GenericStyleSetter<STYLE_
      * @return This style setter.
      */
     public STYLE_SETTER fontSize(BigDecimal size) {
-        this.fontSize = size;
-        return getThis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -220,8 +230,7 @@ abstract class GenericStyleSetter<STYLE_SETTER extends GenericStyleSetter<STYLE_
      * @return This style setter.
      */
     public STYLE_SETTER fontSize(int size) {
-        this.fontSize = BigDecimal.valueOf(size);
-        return getThis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -230,8 +239,7 @@ abstract class GenericStyleSetter<STYLE_SETTER extends GenericStyleSetter<STYLE_
      * @return This style setter.
      */
     public STYLE_SETTER bold() {
-        this.bold = true;
-        return getThis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -240,8 +248,7 @@ abstract class GenericStyleSetter<STYLE_SETTER extends GenericStyleSetter<STYLE_
      * @return This style setter.
      */
     public STYLE_SETTER italic() {
-        this.italic = true;
-        return getThis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -250,8 +257,7 @@ abstract class GenericStyleSetter<STYLE_SETTER extends GenericStyleSetter<STYLE_
      * @return This style setter.
      */
     public STYLE_SETTER underlined() {
-        this.underlined = true;
-        return getThis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -259,8 +265,7 @@ abstract class GenericStyleSetter<STYLE_SETTER extends GenericStyleSetter<STYLE_
      * @return This style setter.
      */
     public STYLE_SETTER strikethrough() {
-        this.strikethrough = true;
-        return getThis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -271,8 +276,7 @@ abstract class GenericStyleSetter<STYLE_SETTER extends GenericStyleSetter<STYLE_
      * @return This style setter.
      */
     public STYLE_SETTER horizontalAlignment(String alignment) {
-        this.horizontalAlignment = alignment;
-        return getThis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -283,8 +287,7 @@ abstract class GenericStyleSetter<STYLE_SETTER extends GenericStyleSetter<STYLE_
      * @return This style setter.
      */
     public STYLE_SETTER verticalAlignment(String alignment) {
-        this.verticalAlignment = alignment;
-        return getThis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -295,8 +298,7 @@ abstract class GenericStyleSetter<STYLE_SETTER extends GenericStyleSetter<STYLE_
      * @return This style setter.
      */
     public STYLE_SETTER wrapText(boolean wrapText) {
-        this.wrapText = wrapText;
-        return getThis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -306,25 +308,17 @@ abstract class GenericStyleSetter<STYLE_SETTER extends GenericStyleSetter<STYLE_
      * @return This style setter
      */
     public STYLE_SETTER rotation(int degrees) {
-        this.rotation = degrees;
-        return getThis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-     /**
+    /**
      * Set cell text indentation.
      *
      * @param indent indentation of text in cell
      * @return This style setter
      */
     public STYLE_SETTER indent(int indent) {
-        if (indent < 0) {
-            this.indent = 0;
-        } else if (indent > 15) {
-            this.indent = 15;
-        }else{
-            this.indent = indent;
-        }
-        return getThis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -349,7 +343,7 @@ abstract class GenericStyleSetter<STYLE_SETTER extends GenericStyleSetter<STYLE_
      * @return This style setter.
      */
     public STYLE_SETTER borderStyle(BorderStyle borderStyle) {
-        return borderStyle(borderStyle.xmlValue);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -360,13 +354,7 @@ abstract class GenericStyleSetter<STYLE_SETTER extends GenericStyleSetter<STYLE_
      * @return This style setter.
      */
     public STYLE_SETTER borderStyle(String borderStyle) {
-        if (border == null) {
-            border = new Border();
-        }
-        EnumSet.of(BorderSide.TOP, BorderSide.LEFT, BorderSide.BOTTOM, BorderSide.RIGHT).forEach(side ->
-                borderElement(side, border.elements.get(side).updateStyle(borderStyle))
-        );
-        return getThis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -377,8 +365,9 @@ abstract class GenericStyleSetter<STYLE_SETTER extends GenericStyleSetter<STYLE_
      * @return This style setter.
      */
     public STYLE_SETTER borderStyle(BorderSide side, BorderStyle borderStyle) {
-        return borderStyle(side, borderStyle.xmlValue);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
+
     /**
      * Apply cell border style on a side.
      *
@@ -388,10 +377,7 @@ abstract class GenericStyleSetter<STYLE_SETTER extends GenericStyleSetter<STYLE_
      * @return This style setter.
      */
     public STYLE_SETTER borderStyle(BorderSide side, String borderStyle) {
-        if (border == null) {
-            border = new Border();
-        }
-        return borderElement(side, border.elements.get(side).updateStyle(borderStyle));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -401,13 +387,7 @@ abstract class GenericStyleSetter<STYLE_SETTER extends GenericStyleSetter<STYLE_
      * @return This style setter.
      */
     public STYLE_SETTER borderColor(String borderColor) {
-        if (border == null) {
-            border = new Border();
-        }
-        EnumSet.of(BorderSide.TOP, BorderSide.LEFT, BorderSide.BOTTOM, BorderSide.RIGHT).forEach(side ->
-                borderElement(side, border.elements.get(side).updateColor(borderColor))
-        );
-        return getThis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -418,10 +398,7 @@ abstract class GenericStyleSetter<STYLE_SETTER extends GenericStyleSetter<STYLE_
      * @return This style setter.
      */
     public STYLE_SETTER borderColor(BorderSide side, String borderColor) {
-        if (border == null) {
-            border = new Border();
-        }
-        return borderElement(side, border.elements.get(side).updateColor(borderColor));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -431,11 +408,7 @@ abstract class GenericStyleSetter<STYLE_SETTER extends GenericStyleSetter<STYLE_
      * @return This style setter.
      */
     public STYLE_SETTER diagonalProperty(DiagonalProperty diagonalProperty) {
-        if (border == null) {
-            border = new Border();
-        }
-        border.setDiagonalProperty(diagonalProperty);
-        return getThis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -446,11 +419,7 @@ abstract class GenericStyleSetter<STYLE_SETTER extends GenericStyleSetter<STYLE_
      * @return This style setter.
      */
     public STYLE_SETTER protectionOption(ProtectionOption option, Boolean value) {
-        if (protectionOptions == null) {
-            protectionOptions = new EnumMap<>(ProtectionOption.class);
-        }
-        protectionOptions.put(option, value);
-        return getThis();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -467,53 +436,8 @@ abstract class GenericStyleSetter<STYLE_SETTER extends GenericStyleSetter<STYLE_
      * @param currentStyles Set of current styles from styled property
      * @param stylesFunction A function which applies merged newStyles to styled property
      */
-    protected void setStyle(boolean shadingEnabled, Set<Integer> currentStyles,
-                    StylesFunction stylesFunction) {
-        Alignment alignment;
-        if (horizontalAlignment != null || verticalAlignment != null || wrapText || rotation != 0 || indent  != 0) {
-            alignment = new Alignment(horizontalAlignment, verticalAlignment, wrapText, rotation, indent);
-        } else {
-            alignment = null;
-        }
-        Font font;
-        if (!Font.equalsDefault(bold,italic,underlined,fontName,fontSize,fontColor, strikethrough)) {
-            font = Font.build(bold, italic, underlined, fontName, fontSize, fontColor, strikethrough);
-        } else {
-            font = Font.DEFAULT;
-        }
-        Fill fill;
-        if (fillColor == null) {
-            fill = Fill.NONE;
-        } else {
-            fill = Fill.fromColor(fillColor);
-        }
-        if (border == null) {
-            border = Border.NONE;
-        }
-
-        Protection protection;
-        if (protectionOptions != null) {
-            protection = new Protection(protectionOptions);
-        } else {
-            protection = null;
-        }
-
-        // Compute a map giving new styles for current styles
-        Map<Integer, Integer> newStyles = currentStyles.stream().collect(Collectors.toMap(Function.identity(), s -> worksheet.getWorkbook().mergeAndCacheStyle(s, valueFormatting, font, fill, border, alignment, protection)));
-
-        // Apply styles
-        stylesFunction.applyStyles(newStyles);
-
-        if (shadingEnabled) {
-            // Shading color for alternate rows is cached separately
-            if (alternateShadingFillColor != null) {
-                getRange().shadeAlternateRows(Fill.fromColor(alternateShadingFillColor, false));
-            }
-
-            if (shadingFillColor != null) {
-                getRange().shadeRows(Fill.fromColor(shadingFillColor, false), eachNRows);
-            }
-        }
+    protected void setStyle(boolean shadingEnabled, Set<Integer> currentStyles, StylesFunction stylesFunction) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -521,27 +445,7 @@ abstract class GenericStyleSetter<STYLE_SETTER extends GenericStyleSetter<STYLE_
      * @param conditionalFormattingRule Conditional formatting rule to apply
      */
     public void set(ConditionalFormattingRule conditionalFormattingRule) {
-        Alignment alignment = null;
-        if (horizontalAlignment != null || verticalAlignment != null || wrapText || rotation != 0 || indent != 0) {
-            alignment = new Alignment(horizontalAlignment, verticalAlignment, wrapText, rotation, indent);
-        }
-        Font font = null;
-        if (bold != null && bold || italic != null && italic || underlined != null && underlined || fontColor != null || fontName != null || fontSize != null || strikethrough != null && strikethrough) {
-            font = Font.build(bold, italic, underlined, fontName, fontSize, fontColor, strikethrough);
-        }
-        Fill fill = null;
-        if (fillColor != null) {
-            fill = Fill.fromColor(fillColor, false);
-        }
-        Protection protection = null;
-        if (protectionOptions != null) {
-            protection = new Protection(protectionOptions);
-        }
-
-        int dxfId = worksheet.getWorkbook().cacheDifferentialFormat(new DifferentialFormat(valueFormatting, font, fill, border, alignment, protection));
-        conditionalFormattingRule.setDxfId(dxfId);
-        ConditionalFormatting conditionalFormatting = new ConditionalFormatting(getRange(), conditionalFormattingRule);
-        worksheet.addConditionalFormatting(conditionalFormatting);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     protected abstract Range getRange();

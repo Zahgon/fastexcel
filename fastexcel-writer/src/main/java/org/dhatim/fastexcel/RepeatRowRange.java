@@ -15,11 +15,14 @@
  */
 package org.dhatim.fastexcel;
 
-/** This class represents a range of rows for the 
- *      repeating rows feature in the print setup. */
-class RepeatRowRange { 
-    
+/**
+ * This class represents a range of rows for the
+ *      repeating rows feature in the print setup.
+ */
+class RepeatRowRange {
+
     final int from;
+
     final int to;
 
     public RepeatRowRange(int from, int to) {
@@ -28,10 +31,10 @@ class RepeatRowRange {
     }
 
     /**
-     * Row indexes need to be increased by 1 
+     * Row indexes need to be increased by 1
      *  (sheet row indexes start from 1 and not from 0)
      */
     public String toString() {
-        return "$" + (1 + from) + ":$" + (1 + to);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

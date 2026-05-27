@@ -3,6 +3,7 @@ package org.dhatim.fastexcel;
 import java.util.Objects;
 
 public class HyperLink {
+
     private final String displayStr;
 
     private final String linkStr;
@@ -16,7 +17,7 @@ public class HyperLink {
      * @return External HyperLink
      */
     public static HyperLink external(String linkStr, String displayStr) {
-        return new HyperLink(linkStr, displayStr, HyperLinkType.EXTERNAL);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -26,7 +27,7 @@ public class HyperLink {
      * @return Internal HyperLink
      */
     public static HyperLink internal(String linkStr, String displayStr) {
-        return new HyperLink(linkStr, displayStr, HyperLinkType.INTERNAL);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public HyperLink(String linkStr) {
@@ -57,32 +58,28 @@ public class HyperLink {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        HyperLink hyperLink = (HyperLink) o;
-        return Objects.equals(displayStr, hyperLink.displayStr)
-                && Objects.equals(linkStr, hyperLink.linkStr)
-                && hyperLinkType == hyperLink.hyperLinkType;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(displayStr, linkStr, hyperLinkType);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String toString() {
-        return linkStr;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public String getDisplayStr() {
-        return displayStr;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public String getLinkStr() {
-        return linkStr;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     HyperLinkType getHyperLinkType() {
-        return hyperLinkType;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

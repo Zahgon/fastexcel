@@ -12,6 +12,7 @@ class Column {
      * Worksheet where this column is defined.
      */
     private final Worksheet worksheet;
+
     /**
      * Position of the column
      */
@@ -31,7 +32,7 @@ class Column {
     }
 
     static Column noStyle(Worksheet worksheet, int c) {
-        return new Column(worksheet, c);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -40,7 +41,7 @@ class Column {
      * @return Parent worksheet.
      */
     public Worksheet getWorksheet() {
-        return worksheet;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -49,7 +50,7 @@ class Column {
      * @return Column number.
      */
     public int getColNumber() {
-        return colNumber;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -58,20 +59,17 @@ class Column {
      * @return Newly created style setter.
      */
     public ColumnStyleSetter style() {
-        return new ColumnStyleSetter(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Column column = (Column) o;
-        return colNumber == column.colNumber && Objects.equals(worksheet, column.worksheet);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(worksheet, colNumber);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -80,7 +78,7 @@ class Column {
      * @return style.
      */
     Integer getStyle() {
-        return style;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -89,6 +87,6 @@ class Column {
      * @param stylesMap new styles map
      */
     void applyStyle(Map<Integer, Integer> stylesMap) {
-        this.style = stylesMap.get(this.style);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

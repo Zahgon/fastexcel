@@ -16,7 +16,6 @@
 package org.dhatim.fastexcel;
 
 import com.github.rzymek.opczip.OpcOutputStream;
-
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -30,22 +29,31 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.zip.ZipEntry;
 
-
 /**
  * A {@link Workbook} contains one or more {@link Worksheet} objects.
  */
 public class Workbook implements Closeable {
 
     private int activeTab = 0;
+
     private boolean finished = false;
+
     private final String applicationName;
+
     private final String applicationVersion;
+
     private final List<Worksheet> worksheets = new ArrayList<>();
+
     private final StringCache stringCache = new StringCache();
+
     private final StyleCache styleCache = new StyleCache();
+
     private final Properties properties = new Properties();
+
     private final OpcOutputStream os;
+
     private final Writer writer;
+
     private final AtomicInteger maxTableIndex = new AtomicInteger(1);
 
     /**
@@ -70,7 +78,6 @@ public class Workbook implements Closeable {
         setCompressionLevel(4);
         this.writer = new Writer(this.os);
         this.applicationName = Objects.requireNonNull(applicationName);
-
         // Check application version
         if (applicationVersion != null && !applicationVersion.matches("\\d{1,2}\\.\\d{1,4}")) {
             throw new IllegalArgumentException("Application version must be of the form XX.YYYY");
@@ -86,24 +93,23 @@ public class Workbook implements Closeable {
      * @param level the compression level (0-9)
      */
     public void setCompressionLevel(int level) {
-        this.os.setLevel(level);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public void setActiveTab(int tabIndex) {
-        this.activeTab = tabIndex;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public void setGlobalDefaultFont(String fontName, double fontSize) {
-        this.setGlobalDefaultFont(Font.build(null, null, null, fontName, BigDecimal.valueOf(fontSize), null, null));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public void setGlobalDefaultFont(Font font) {
-        Font.DEFAULT = font;
-        this.styleCache.replaceDefaultFont(font);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Properties properties() {
-        return this.properties;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -112,12 +118,12 @@ public class Workbook implements Closeable {
      * @param comparator The Comparator used to sort the worksheets
      */
     public void sortWorksheets(Comparator<Worksheet> comparator) {
-        worksheets.sort(comparator);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void close() throws IOException {
-        finish();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -127,85 +133,7 @@ public class Workbook implements Closeable {
      * @throws IOException In case of I/O error.
      */
     public void finish() throws IOException {
-        if (finished) {
-            return;
-        }
-
-        if (worksheets.isEmpty()) {
-            throw new IllegalArgumentException("A workbook must contain at least one worksheet.");
-        }
-
-        for (Worksheet ws : worksheets) {
-            ws.close();
-        }
-
-        writeFile("[Content_Types].xml", w -> {
-            w.append("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><Types xmlns=\"http://schemas.openxmlformats.org/package/2006/content-types\"><Default Extension=\"rels\" ContentType=\"application/vnd.openxmlformats-package.relationships+xml\"/><Default Extension=\"xml\" ContentType=\"application/xml\"/>");
-            if (hasComments()) {
-                w.append("<Default ContentType=\"application/vnd.openxmlformats-officedocument.vmlDrawing\" Extension=\"vml\"/>");
-            }
-            // Add image content types
-            Set<ImageType> usedImageTypes = collectUsedImageTypes();
-            for (ImageType imageType : usedImageTypes) {
-                w.append("<Default Extension=\"").append(imageType.getExtension())
-                 .append("\" ContentType=\"").append(imageType.getContentType()).append("\"/>");
-            }
-            w.append("<Override PartName=\"/xl/sharedStrings.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.sharedStrings+xml\"/><Override PartName=\"/xl/styles.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml\"/><Override PartName=\"/xl/workbook.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml\"/>");
-            for (Worksheet ws : worksheets) {
-                int index = getIndex(ws);
-                w.append("<Override PartName=\"/xl/worksheets/sheet").append(index).append(".xml\" ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml\"/>");
-                // Drawing content type (for pictures and/or comments)
-                if (!ws.pictures.isEmpty() || !ws.comments.isEmpty()) {
-                    w.append("<Override ContentType=\"application/vnd.openxmlformats-officedocument.drawing+xml\" PartName=\"/xl/drawings/drawing").append(index).append(".xml\"/>");
-                }
-                // Comments content type
-                if (!ws.comments.isEmpty()) {
-                    w.append("<Override ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.comments+xml\" PartName=\"/xl/comments").append(index).append(".xml\"/>");
-                }
-                if (!ws.tables.isEmpty()) {
-                    for (Map.Entry<String, Table> entry : ws.tables.entrySet()) {
-                        Table table = entry.getValue();
-                        w.append("<Override PartName=\"/xl/tables/table" + table.index + ".xml\" ContentType=\"application/vnd.openxmlformats-officedocument.spreadsheetml.table+xml\"/>");
-                    }
-                }
-            }
-            w.append("<Override PartName=\"/docProps/core.xml\" ContentType=\"application/vnd.openxmlformats-package.core-properties+xml\"/>");
-            w.append("<Override PartName=\"/docProps/app.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.extended-properties+xml\"/>");
-            if (properties.hasCustomProperties()) {
-                w.append("<Override PartName=\"/docProps/custom.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.custom-properties+xml\"/>");
-            }
-            w.append("</Types>");
-        });
-        writeProperties();
-        if (properties.hasCustomProperties()) {
-            writeFile("docProps/custom.xml", properties::writeCustomProperties);
-        }
-
-        writeFile("_rels/.rels", w -> {
-            w.append("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>");
-            w.append("<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\">");
-            w.append("<Relationship Id=\"rId3\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/extended-properties\" Target=\"docProps/app.xml\"/>");
-            w.append("<Relationship Id=\"rId2\" Type=\"http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties\" Target=\"docProps/core.xml\"/>");
-            w.append("<Relationship Id=\"rId1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument\" Target=\"xl/workbook.xml\"/>");
-            if (properties.hasCustomProperties()) {
-                w.append("<Relationship Id=\"rId4\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/custom-properties\" Target=\"docProps/custom.xml\"/>");
-            }
-            w.append("</Relationships>");
-        });
-
-        writeWorkbookFile();
-
-        writeFile("xl/_rels/workbook.xml.rels", w -> {
-            w.append("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"rId1\" Target=\"sharedStrings.xml\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/sharedStrings\"/><Relationship Id=\"rId2\" Target=\"styles.xml\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles\"/>");
-            for (Worksheet ws : worksheets) {
-                w.append("<Relationship Id=\"rId").append(getIndex(ws) + 2).append("\" Target=\"worksheets/sheet").append(getIndex(ws)).append(".xml\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet\"/>");
-            }
-            w.append("</Relationships>");
-        });
-        writeFile("xl/sharedStrings.xml", stringCache::write);
-        writeFile("xl/styles.xml", styleCache::write);
-        this.os.finish();
-        finished = true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private void writeProperties() throws IOException {
@@ -313,34 +241,22 @@ public class Workbook implements Closeable {
      */
     private void writeWorkbookFile() throws IOException {
         writeFile("xl/workbook.xml", w -> {
-            w.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
-                     "<workbook " +
-                     "xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" " +
-                     "xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\">" +
-                     "<workbookPr date1904=\"false\"/>" +
-                     "<bookViews>" +
-                     "<workbookView activeTab=\"" + activeTab + "\"/>" +
-                     "</bookViews>" +
-                     "<sheets>");
-
+            w.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + "<workbook " + "xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" " + "xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\">" + "<workbookPr date1904=\"false\"/>" + "<bookViews>" + "<workbookView activeTab=\"" + activeTab + "\"/>" + "</bookViews>" + "<sheets>");
             for (Worksheet ws : worksheets) {
                 writeWorkbookSheet(w, ws);
             }
             w.append("</sheets>");
-
-            /** Defining repeating rows and columns for the print setup...
+            /**
+             * Defining repeating rows and columns for the print setup...
              *  This is defined for each sheet separately
-             * (if there are any repeating rows or cols in the sheet at all) **/
+             * (if there are any repeating rows or cols in the sheet at all) *
+             */
             w.append("<definedNames>");
             for (Worksheet ws : worksheets) {
                 int worksheetIndex = getIndex(ws) - 1;
-                List<Object> repeatingColsAndRows = Stream.of(ws.getRepeatingCols(), ws.getRepeatingRows())
-                                                          .filter(Objects::nonNull)
-                                                          .collect(Collectors.toList());
+                List<Object> repeatingColsAndRows = Stream.of(ws.getRepeatingCols(), ws.getRepeatingRows()).filter(Objects::nonNull).collect(Collectors.toList());
                 if (!repeatingColsAndRows.isEmpty()) {
-                    w.append("<definedName function=\"false\" hidden=\"false\" localSheetId=\"")
-                     .append(worksheetIndex)
-                     .append("\" name=\"_xlnm.Print_Titles\" vbProcedure=\"false\">");
+                    w.append("<definedName function=\"false\" hidden=\"false\" localSheetId=\"").append(worksheetIndex).append("\" name=\"_xlnm.Print_Titles\" vbProcedure=\"false\">");
                     for (int i = 0; i < repeatingColsAndRows.size(); ++i) {
                         if (i > 0) {
                             w.append(",");
@@ -349,34 +265,21 @@ public class Workbook implements Closeable {
                     }
                     w.append("</definedName>");
                 }
-                /** define specifically named ranges **/
+                /**
+                 * define specifically named ranges *
+                 */
                 for (Map.Entry<String, Range> nr : ws.getNamedRanges().entrySet()) {
                     String rangeName = nr.getKey();
                     Range range = nr.getValue();
                     w.append("<definedName function=\"false\" hidden=\"false\"");
-
                     if (!range.isFolderScope()) {
-                        w.append(" localSheetId=\"")
-                         .append(worksheetIndex).append("\"");
+                        w.append(" localSheetId=\"").append(worksheetIndex).append("\"");
                     }
-
-                    w.append(" name=\"")
-                     .append(rangeName)
-                     .append("\" vbProcedure=\"false\">'")
-                     .appendEscaped(ws.getName())
-                     .append("'!")
-                     .append(range.toAbsoluteString())
-                     .append("</definedName>");
+                    w.append(" name=\"").append(rangeName).append("\" vbProcedure=\"false\">'").appendEscaped(ws.getName()).append("'!").append(range.toAbsoluteString()).append("</definedName>");
                 }
                 Range af = ws.getAutoFilterRange();
                 if (af != null) {
-                    w.append("<definedName function=\"false\" hidden=\"true\" localSheetId=\"")
-                     .append(worksheetIndex)
-                     .append("\" name=\"_xlnm._FilterDatabase\" vbProcedure=\"false\">'")
-                     .appendEscaped(ws.getName())
-                     .append("'!")
-                     .append(af.toAbsoluteString())
-                     .append("</definedName>");
+                    w.append("<definedName function=\"false\" hidden=\"true\" localSheetId=\"").append(worksheetIndex).append("\" name=\"_xlnm._FilterDatabase\" vbProcedure=\"false\">'").appendEscaped(ws.getName()).append("'!").append(af.toAbsoluteString()).append("</definedName>");
                 }
             }
             w.append("</definedNames>");
@@ -392,13 +295,10 @@ public class Workbook implements Closeable {
      * @throws IOException If an I/O error occurs.
      */
     private void writeWorkbookSheet(Writer w, Worksheet ws) throws IOException {
-        w.append("<sheet name=\"").appendEscaped(ws.getName()).append("\" r:id=\"rId").append(getIndex(ws) + 2)
-         .append("\" sheetId=\"").append(getIndex(ws));
-
+        w.append("<sheet name=\"").appendEscaped(ws.getName()).append("\" r:id=\"rId").append(getIndex(ws) + 2).append("\" sheetId=\"").append(getIndex(ws));
         if (ws.getVisibilityState() != null) {
             w.append("\" state=\"").append(ws.getVisibilityState().getName());
         }
-
         w.append("\"/>");
     }
 
@@ -410,21 +310,15 @@ public class Workbook implements Closeable {
      * @throws IOException If an I/O error occurs.
      */
     void writeFile(String name, ThrowingConsumer<Writer> consumer) throws IOException {
-        synchronized (os) {
-            beginFile(name);
-            consumer.accept(writer);
-            endFile();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     Writer beginFile(String name) throws IOException {
-        os.putNextEntry(new ZipEntry(name));
-        return writer;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     void endFile() throws IOException {
-        writer.flush();
-        os.closeEntry();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -435,11 +329,7 @@ public class Workbook implements Closeable {
      * @throws IOException If an I/O error occurs.
      */
     void writeBinaryFile(String name, byte[] data) throws IOException {
-        synchronized (os) {
-            os.putNextEntry(new ZipEntry(name));
-            os.write(data);
-            os.closeEntry();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -449,7 +339,7 @@ public class Workbook implements Closeable {
      * @return Cached string.
      */
     CachedString cacheString(String s) {
-        return stringCache.cacheString(s);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -464,7 +354,7 @@ public class Workbook implements Closeable {
      * @return Cached style index.
      */
     int mergeAndCacheStyle(int currentStyle, String numberingFormat, Font font, Fill fill, Border border, Alignment alignment, Protection protection) {
-        return styleCache.mergeAndCacheStyle(currentStyle, numberingFormat, font, fill, border, alignment, protection);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -474,9 +364,7 @@ public class Workbook implements Closeable {
      * @return Cached differential format index.
      */
     int cacheDifferentialFormat(DifferentialFormat differentialFormat) {
-        int numFmtId = styleCache.cacheValueFormatting(differentialFormat.getValueFormatting());
-        differentialFormat.setNumFmtId(numFmtId);
-        return styleCache.cacheDxf(differentialFormat);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -487,9 +375,7 @@ public class Workbook implements Closeable {
      * @return Worksheet index.
      */
     int getIndex(Worksheet ws) {
-        synchronized (worksheets) {
-            return worksheets.indexOf(ws) + 1;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -499,34 +385,10 @@ public class Workbook implements Closeable {
      * @return The new blank worksheet.
      */
     public Worksheet newWorksheet(String name) {
-        // Replace chars forbidden in worksheet names (backslahses and colons) by dashes
-        String sheetName = name.replaceAll("[/\\\\?*\\]\\[:]", "-");
-
-        // Maximum length worksheet name is 31 characters
-        if (sheetName.length() > 31) {
-            sheetName = sheetName.substring(0, 31);
-        }
-
-        synchronized (worksheets) {
-            // If the worksheet name already exists, append a number
-            int number = 1;
-            Set<String> names = worksheets.stream().map(Worksheet::getName).collect(Collectors.toSet());
-            while (names.contains(sheetName)) {
-                String suffix = String.format(Locale.ROOT, "_%d", number);
-                if (sheetName.length() + suffix.length() > 31) {
-                    sheetName = sheetName.substring(0, 31 - suffix.length()) + suffix;
-                } else {
-                    sheetName += suffix;
-                }
-                ++number;
-            }
-            Worksheet worksheet = new Worksheet(this, sheetName);
-            worksheets.add(worksheet);
-            return worksheet;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     int nextTableIndex() {
-        return maxTableIndex.getAndIncrement();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

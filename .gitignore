@@ -23,3 +23,8 @@ jmh.csv
 .project
 .classpath
 .settings
+
+.aider*
+logs/
+.commit0_scripts/
+.github/workflows/

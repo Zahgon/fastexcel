@@ -28,6 +28,7 @@ class Writer {
      * Target output stream.
      */
     private final OutputStream os;
+
     /**
      * Char buffer.
      */
@@ -51,7 +52,7 @@ class Writer {
      * @throws IOException If an I/O error occurs.
      */
     Writer append(String s) throws IOException {
-        return append(s, false);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -62,7 +63,7 @@ class Writer {
      * @throws IOException If an I/O error occurs.
      */
     Writer appendEscaped(String s) throws IOException {
-        return append(s, true);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -103,9 +104,7 @@ class Writer {
      * @throws IOException If an I/O error occurs.
      */
     Writer append(char c) throws IOException {
-        sb.append(c);
-        check();
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -116,9 +115,7 @@ class Writer {
      * @throws IOException If an I/O error occurs.
      */
     Writer append(int n) throws IOException {
-        sb.append(n);
-        check();
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -129,9 +126,7 @@ class Writer {
      * @throws IOException If an I/O error occurs.
      */
     Writer append(long n) throws IOException {
-        sb.append(n);
-        check();
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -142,9 +137,7 @@ class Writer {
      * @throws IOException If an I/O error occurs.
      */
     Writer append(double n) throws IOException {
-        sb.append(n);
-        check();
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -153,7 +146,6 @@ class Writer {
      * @throws IOException If an I/O error occurs.
      */
     void flush() throws IOException {
-        os.write(sb.toString().getBytes(StandardCharsets.UTF_8));
-        sb.setLength(0);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

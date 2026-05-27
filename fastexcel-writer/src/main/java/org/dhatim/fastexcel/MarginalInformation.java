@@ -8,54 +8,57 @@ import java.io.IOException;
  */
 public class MarginalInformation {
 
-	private static final String DEFAULT_FONT = "Times New Roman";
-	private static final int DEFAULT_FONT_SIZE = 12;
-	private final String text;
-	private final Position position;
-	private final String font;
-	private final int fontSize;
+    private static final String DEFAULT_FONT = "Times New Roman";
 
-	public MarginalInformation(String text, Position position) {
-		this(text, position, DEFAULT_FONT, DEFAULT_FONT_SIZE);
-	}
+    private static final int DEFAULT_FONT_SIZE = 12;
 
-	private MarginalInformation(String text, Position position, String font, int fontSize) {
-		this.text = text;
-		this.position = position;
-		this.font = font;
-		this.fontSize = fontSize;
-	}
+    private final String text;
 
-	public MarginalInformation withFont(String font) {
-		return new MarginalInformation(this.text, this.position, font, fontSize);
-	}
+    private final Position position;
 
-	public MarginalInformation withFontSize(int fontSize) {
-		return new MarginalInformation(this.text, this.position, this.font, fontSize);
-	}
+    private final String font;
 
-	public String getContent() {
-		return "&amp;" + position.getPos() +
-				"&amp;&quot;" + font + ",Regular&quot;&amp;" + fontSize +
-				"&amp;K000000" + prepareTextForXml(text);
-	}
+    private final int fontSize;
 
-	public void write(Writer writer) throws IOException {
-		writer.append(getContent());
-	}
+    public MarginalInformation(String text, Position position) {
+        this(text, position, DEFAULT_FONT, DEFAULT_FONT_SIZE);
+    }
 
-	private String prepareTextForXml(String text) {
-		switch (text.toLowerCase()) {
-			case "page 1 of ?":
-				return "Page &amp;P of &amp;N";
-			case "page 1, sheetname":
-				return "Page &amp;P, &amp;A";
-			case "page 1":
-				return "Page &amp;P";
-			case "sheetname":
-				return "&amp;A";
-			default:
-				return XmlEscapeHelper.escape(text);
-		}
-	}
+    private MarginalInformation(String text, Position position, String font, int fontSize) {
+        this.text = text;
+        this.position = position;
+        this.font = font;
+        this.fontSize = fontSize;
+    }
+
+    public MarginalInformation withFont(String font) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public MarginalInformation withFontSize(int fontSize) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public String getContent() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public void write(Writer writer) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    private String prepareTextForXml(String text) {
+        switch(text.toLowerCase()) {
+            case "page 1 of ?":
+                return "Page &amp;P of &amp;N";
+            case "page 1, sheetname":
+                return "Page &amp;P, &amp;A";
+            case "page 1":
+                return "Page &amp;P";
+            case "sheetname":
+                return "&amp;A";
+            default:
+                return XmlEscapeHelper.escape(text);
+        }
+    }
 }

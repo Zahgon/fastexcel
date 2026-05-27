@@ -25,20 +25,26 @@ public class Cell {
     private static final long DAY_MILLISECONDS = 86_400_000L;
 
     private final ReadableWorkbook workbook;
+
     private final Object value;
+
     private final String formula;
+
     private final CellType type;
+
     private final CellAddress address;
+
     private final String rawValue;
+
     private final String dataFormatId;
+
     private final String dataFormatString;
 
     Cell(ReadableWorkbook workbook, CellType type, Object value, CellAddress address, String formula, String rawValue) {
         this(workbook, type, value, address, formula, rawValue, null, null);
     }
 
-    Cell(ReadableWorkbook workbook, CellType type, Object value, CellAddress address, String formula, String rawValue,
-         String dataFormatId, String dataFormatString) {
+    Cell(ReadableWorkbook workbook, CellType type, Object value, CellAddress address, String formula, String rawValue, String dataFormatId, String dataFormatString) {
         this.workbook = workbook;
         this.type = type;
         this.value = value;
@@ -50,35 +56,34 @@ public class Cell {
     }
 
     public CellType getType() {
-        return type;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public int getColumnIndex() {
-        return address.getColumn();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public CellAddress getAddress() {
-        return address;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Object getValue() {
-        return value;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return xml value of the cell as it appears in the sheet format.
      */
     public String getRawValue() {
-        return rawValue;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public String getFormula() {
-        return formula;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public BigDecimal asNumber() {
-        requireType(CellType.NUMBER);
-        return (BigDecimal) value;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -87,29 +92,24 @@ public class Cell {
      * @throws ExcelReaderException is the cell if not of numerical type or empty
      */
     public LocalDateTime asDate() {
-        if (type == CellType.NUMBER || type == CellType.FORMULA) {
-            return convertToDate(Double.parseDouble(rawValue));
-        } else if (type == CellType.EMPTY) {
-            return null;
-        } else {
-            throw new ExcelReaderException("Wrong cell type " + type + " for date value");
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private LocalDateTime convertToDate(double value) {
         int wholeDays = (int) Math.floor(value);
         long millisecondsInDay = (long) (((value - wholeDays) * DAY_MILLISECONDS) + 0.5D);
         // sometimes the rounding for .9999999 returns the whole number of ms a day
-        if(millisecondsInDay == DAY_MILLISECONDS) {
-            wholeDays +=1;
-            millisecondsInDay= 0;
+        if (millisecondsInDay == DAY_MILLISECONDS) {
+            wholeDays += 1;
+            millisecondsInDay = 0;
         }
-
         int startYear = 1900;
-        int dayAdjust = -1; // Excel thinks 2/29/1900 is a valid date, which it isn't
+        // Excel thinks 2/29/1900 is a valid date, which it isn't
+        int dayAdjust = -1;
         if (workbook.isDate1904()) {
             startYear = 1904;
-            dayAdjust = 1; // 1904 date windowing uses 1/2/1904 as the first day
+            // 1904 date windowing uses 1/2/1904 as the first day
+            dayAdjust = 1;
         } else if (wholeDays < 61) {
             // Date is prior to 3/1/1900, so adjust because Excel thinks 2/29/1900 exists
             // If Excel date == 2/29/1900, will become 3/1/1900 in Java representation
@@ -121,8 +121,7 @@ public class Cell {
     }
 
     public Boolean asBoolean() {
-        requireType(CellType.BOOLEAN);
-        return (Boolean) value;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -131,8 +130,7 @@ public class Cell {
      * @see #getText()
      */
     public String asString() {
-        requireType(CellType.STRING);
-        return value == null ? "" : (String) value;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private void requireType(CellType requiredType) {
@@ -146,18 +144,15 @@ public class Cell {
      * @see #asString()
      */
     public String getText() {
-        return value == null ? "" : value.toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Integer getDataFormatId() {
-        if (dataFormatId == null) {
-            return null;
-        }
-        return Integer.parseInt(dataFormatId);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public String getDataFormatString() {
-        return dataFormatString;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -165,14 +160,6 @@ public class Cell {
      */
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append('[').append(type).append(' ');
-        if (value == null) {
-            sb.append("null");
-        } else {
-            sb.append('"').append(value).append('"');
-        }
-        return sb.append(']').toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

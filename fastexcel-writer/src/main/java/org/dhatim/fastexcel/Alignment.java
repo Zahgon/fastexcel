@@ -25,9 +25,13 @@ import java.util.Objects;
 class Alignment {
 
     private final String horizontal;
+
     private final String vertical;
+
     private final boolean wrapText;
+
     private final int rotation;
+
     private final int indent;
 
     /**
@@ -51,21 +55,12 @@ class Alignment {
 
     @Override
     public int hashCode() {
-        return Objects.hash(horizontal, vertical, wrapText);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(Object obj) {
-        boolean result;
-        if (obj != null && obj.getClass() == this.getClass()) {
-            Alignment other = (Alignment) obj;
-            result = Objects.equals(horizontal, other.horizontal) && Objects.equals(vertical, other.vertical)
-                    && Objects.equals(wrapText, other.wrapText) && Objects.equals(rotation, other.rotation)
-                    && Objects.equals(indent, other.indent);
-        } else {
-            result = false;
-        }
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -75,22 +70,6 @@ class Alignment {
      * @throws IOException If an I/O error occurs.
      */
     void write(Writer w) throws IOException {
-        w.append("<alignment");
-        if (horizontal != null) {
-            w.append(" horizontal=\"").append(horizontal).append('\"');
-        }
-        if (vertical != null) {
-            w.append(" vertical=\"").append(vertical).append('\"');
-        }
-        if (rotation != 0) {
-            w.append(" textRotation=\"").append(rotation).append('\"');
-        }
-        if (indent != 0) {
-            w.append(" indent=\"").append(indent).append('\"');
-        }
-        if (wrapText) {
-            w.append(" wrapText=\"true\"");
-        }
-        w.append("/>");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

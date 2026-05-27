@@ -18,23 +18,11 @@ public class DynamicByteArray {
     }
 
     void set(int index, byte value) {
-        if (index >= MAX_LENGTH) {
-            throw new IllegalArgumentException(String.format("Index value exceeds the maximum allowed length value.MAX_LENGTH = %d,index = %d", MAX_LENGTH, index));
-        }
-        int arrayAreaIndex = index / UNIT_LENGTH;
-        byte[] bytes = getBytesWithOutNull(arrayAreaIndex);
-        bytes[index - arrayAreaIndex * UNIT_LENGTH] = value;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     void increase(int index) {
-        if (index >= MAX_LENGTH) {
-            throw new IllegalArgumentException(String.format("Index value exceeds the maximum allowed length value.MAX_LENGTH = %d,index = %d", MAX_LENGTH, index));
-        }
-        int arrayAreaIndex = index / UNIT_LENGTH;
-        byte[] bytes = getBytesWithOutNull(arrayAreaIndex);
-        if (++bytes[index - arrayAreaIndex * UNIT_LENGTH]>7) {
-            throw new IllegalStateException(String.format("Cannot proceed with grouping because the grouping level at this index position has reached the maximum 7.index = %s",index));
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private byte[] getBytesWithOutNull(int arrayAreaIndex) {
@@ -49,52 +37,21 @@ public class DynamicByteArray {
         return byteArrayData.get(arrayAreaIndex);
     }
 
-
     byte get(int index) {
-        int arrayAreaIndex = index / UNIT_LENGTH;
-        if (arrayAreaIndex > byteArrayData.size()-1){
-            return 0;
-        }
-        byte[] bytes = byteArrayData.get(arrayAreaIndex);
-        if (bytes == null) {
-            return 0;
-        }
-        return bytes[index - arrayAreaIndex * UNIT_LENGTH];
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     int getMaxNoZeroIndex() {
-        for (int areaIndex = byteArrayData.size(); areaIndex > 0; areaIndex--) {
-            byte[] bytes = byteArrayData.get(areaIndex-1);
-            if (bytes == null) {
-                continue;
-            }
-            for (int i = bytes.length - 1; i >= 0; i--) {
-                if (bytes[i] != 0) {
-                    return i + (areaIndex-1) * UNIT_LENGTH;
-                }
-            }
-        }
-        return -1;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 
     @Override
     public String toString() {
-        return buildToString(" ");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public String buildToString(String fillNullString) {
-        StringBuilder builder = new StringBuilder();
-        for (byte[] bytes : byteArrayData) {
-            if (bytes == null) {
-                builder.append(repeatString(fillNullString + ',', UNIT_LENGTH));
-            } else {
-                for (byte aByte : bytes) {
-                    builder.append(aByte).append(',');
-                }
-            }
-        }
-        return builder.toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private String repeatString(String seed, int n) {
@@ -108,5 +65,4 @@ public class DynamicByteArray {
         }
         return String.valueOf(dstArr);
     }
-
 }

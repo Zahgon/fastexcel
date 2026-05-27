@@ -19,16 +19,10 @@ package org.dhatim.fastexcel;
  * Predefined header/footer positions.
  */
 public enum Position {
+
     LEFT, CENTER, RIGHT;
 
     public String getPos() {
-        switch(this) {
-            case LEFT: return "L";
-            case CENTER: return "C";
-            case RIGHT: return "R";
-            default: return null;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }
-
-

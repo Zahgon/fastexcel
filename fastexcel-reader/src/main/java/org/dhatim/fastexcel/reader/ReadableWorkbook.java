@@ -23,17 +23,20 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
-
 import static org.dhatim.fastexcel.reader.DefaultXMLInputFactory.factory;
 
 public class ReadableWorkbook implements Closeable {
 
     private final OPCPackage pkg;
+
     private final SST sst;
+
     private final ReadingOptions readingOptions;
 
     private boolean date1904;
+
     private final List<Sheet> sheets = new ArrayList<>();
+
     private Integer activeTab;
 
     public ReadableWorkbook(File inputFile) throws IOException {
@@ -61,7 +64,6 @@ public class ReadableWorkbook implements Closeable {
     }
 
     private ReadableWorkbook(OPCPackage pkg, ReadingOptions readingOptions) throws IOException {
-
         try {
             this.pkg = pkg;
             sst = SST.fromInputStream(pkg.getSharedStrings());
@@ -78,39 +80,35 @@ public class ReadableWorkbook implements Closeable {
 
     @Override
     public void close() throws IOException {
-        pkg.close();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public boolean isDate1904() {
-        return date1904;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Stream<Sheet> getSheets() {
-        return sheets.stream();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Optional<Sheet> getSheet(int index) {
-        return index < 0 || index >= sheets.size() ? Optional.empty() : Optional.of(sheets.get(index));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Sheet getFirstSheet() {
-        return sheets.get(0);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Optional<Sheet> findSheet(String name) {
-        return sheets.stream().filter(sheet -> name.equals(sheet.getName())).findFirst();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Optional<Sheet> getActiveSheet() {
-        if (activeTab == null) {
-            return Optional.empty();
-        }
-        return getSheet(activeTab);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private void readWorkbook(SimpleXmlReader r) throws XMLStreamException {
-        while (r.goTo(() -> r.isStartElement("sheets") || r.isStartElement("workbookPr") ||
-            r.isStartElement("workbookView") || r.isEndElement("workbook"))) {
+        while (r.goTo(() -> r.isStartElement("sheets") || r.isStartElement("workbookPr") || r.isStartElement("workbookView") || r.isEndElement("workbook"))) {
             if ("workbookView".equals(r.getLocalName())) {
                 String activeTab = r.getAttribute("activeTab");
                 if (activeTab != null) {
@@ -120,7 +118,7 @@ public class ReadableWorkbook implements Closeable {
                 r.forEach("sheet", "sheets", this::createSheet);
             } else if ("workbookPr".equals(r.getLocalName())) {
                 String date1904Value = r.getAttribute("date1904");
-                if(date1904Value != null) {
+                if (date1904Value != null) {
                     date1904 = "true".equalsIgnoreCase(date1904Value) || "1".equals(date1904Value);
                 }
             } else {
@@ -146,37 +144,31 @@ public class ReadableWorkbook implements Closeable {
     }
 
     Stream<Row> openStream(Sheet sheet) throws IOException {
-        try {
-            InputStream inputStream = pkg.getSheetContent(sheet);
-            Stream<Row> stream = StreamSupport.stream(new RowSpliterator(this, inputStream), false);
-            return stream.onClose(asUncheckedRunnable(inputStream));
-        } catch (XMLStreamException e) {
-            throw new IOException(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public List<String> getFormats() {
-        return pkg.getFormatList();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Map<String, String> getNumFmtIdToFormat() {
-        return pkg.getFmtIdToFmtString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     SST getSharedStringsTable() {
-        return sst;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public static boolean isOOXMLZipHeader(byte[] bytes) {
-        return HeaderSignatures.isHeader(bytes, HeaderSignatures.OOXML_FILE_HEADER);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public static boolean isOLE2Header(byte[] bytes) {
-        return HeaderSignatures.isHeader(bytes, HeaderSignatures.OLE_2_SIGNATURE);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     ReadingOptions getReadingOptions() {
-        return readingOptions;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private static Runnable asUncheckedRunnable(Closeable c) {
@@ -188,5 +180,4 @@ public class ReadableWorkbook implements Closeable {
             }
         };
     }
-
 }

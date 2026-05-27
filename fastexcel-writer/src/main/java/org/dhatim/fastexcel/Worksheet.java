@@ -23,7 +23,6 @@ import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.stream.IntStream;
-
 import static org.dhatim.fastexcel.XmlEscapeHelper.escape;
 
 /**
@@ -46,7 +45,7 @@ public class Worksheet implements Closeable {
      */
     public static final int MAX_COL_WIDTH = 255;
 
-     /**
+    /**
      * Default column width in Excel.
      */
     public static final double DEFAULT_COL_WIDTH = 8.88671875;
@@ -57,36 +56,45 @@ public class Worksheet implements Closeable {
     public static final double MAX_ROW_HEIGHT = 409.5;
 
     private final Workbook workbook;
+
     private final String name;
+
     /**
      * List of rows. A row is an array of cells.
      * Flushed rows are null.
      */
     private final List<Cell[]> rows = new ArrayList<>();
+
     /**
      * Ranges of merged cells.
      */
     private final Set<Range> mergedRanges = new HashSet<>();
+
     /**
      * Matrix of merged cells.
      */
     private final DynamicBitMatrix mergedMatrix = new DynamicBitMatrix(MAX_COLS, MAX_ROWS);
+
     /**
      * List of conditional formattings for this worksheet
      */
     private final List<ConditionalFormatting> conditionalFormattings = new ArrayList<>();
+
     /**
      * List of DataValidations for this worksheet
      */
     private final List<DataValidation> dataValidations = new ArrayList<>();
+
     /**
      * List of ranges where shading to alternate rows is defined.
      */
     private final List<AlternateShading> alternateShadingRanges = new ArrayList<>();
+
     /**
      * List of ranges where shading to Nth rows is defined.
      */
     private final List<Shading> shadingRanges = new ArrayList<>();
+
     /**
      * List of rows to hide
      */
@@ -96,10 +104,12 @@ public class Worksheet implements Closeable {
      * List of columns to hide
      */
     private final Set<Integer> hiddenColumns = new HashSet<>();
+
     /**
      * Array of column's group level
      */
     private final DynamicByteArray groupColumns = new DynamicByteArray(MAX_COLS);
+
     /**
      * Array of rows's group level
      */
@@ -124,7 +134,7 @@ public class Worksheet implements Closeable {
 
     final Pictures pictures = new Pictures();
 
-    final Map<String,Table> tables = new LinkedHashMap<>();
+    final Map<String, Table> tables = new LinkedHashMap<>();
 
     private final DynamicBitMatrix tablesMatrix = new DynamicBitMatrix(MAX_COLS, MAX_ROWS);
 
@@ -162,96 +172,119 @@ public class Worksheet implements Closeable {
      * Sheet view zoom percentage
      */
     private int zoomScale = 100;
+
     /**
      * Number of top rows that will remain frozen while scrolling.
      */
     private int freezeTopRows = 0;
+
     /**
      * Number of columns from the left that remain frozen while scrolling.
      */
     private int freezeLeftColumns = 0;
+
     /**
      * Page orientation [landscape / portrait] for the print preview setup.
      */
     private String pageOrientation = "portrait";
+
     /**
      * Paper size for the print preview setup.
      */
     private PaperSize paperSize = PaperSize.LETTER_PAPER;
+
     /**
      * Scaling factor for the print setup.
      */
     private int pageScale = 100;
+
     /**
      * Auto page breaks.
      */
     private Boolean autoPageBreaks = false;
+
     /**
      * Fit to page (true for fit to width/height).
      */
     private Boolean fitToPage = false;
+
     /**
      * Fit to width in the print setup.
      */
     private int fitToWidth = 1;
+
     /**
      * Fit to height in the print setup.
      */
     private int fitToHeight = 1;
+
     /**
      * First page number in the print setup.
      */
     private int firstPageNumber = 0;
+
     /**
      * Whether to use the firstPageNumber in the print setup.
      */
-    private Boolean useFirstPageNumber=false;
+    private Boolean useFirstPageNumber = false;
+
     /**
      * Black and white mode in the print setup.
      */
     private Boolean blackAndWhite = false;
+
     /**
      * Header margin value in inches.
      */
     private float headerMargin = 0.3f;
+
     /**
      * Footer margin value in inches.
      */
     private float footerMargin = 0.3f;
+
     /**
      * Top margin value in inches.
      */
     private float topMargin = 0.75f;
+
     /**
      * Bottom margin value in inches.
      */
     private float bottomMargin = 0.75f;
+
     /**
      * Left margin value in inches.
      */
     private float leftMargin = 0.7f;
+
     /**
      * Right margin value in inches.
      */
     private float rightMargin = 0.7f;
+
     /**
      * Header map for left, central and right field text.
      */
     private final Map<Position, MarginalInformation> header = new LinkedHashMap<>();
+
     /**
      * Footer map for left, central and right field text.
      */
     private final Map<Position, MarginalInformation> footer = new LinkedHashMap<>();
+
     /**
      * Range of repeating rows for the print setup.
      * (Those rows will be repeated on each page when document is printed.)
      */
     private RepeatRowRange repeatingRows = null;
+
     /**
      * Range of repeating columns for the print setup.
      * (Those columns will be repeated on each page when document is printed.)
      */
     private RepeatColRange repeatingCols = null;
+
     /**
      * The hashed password that protects this sheet.
      */
@@ -263,6 +296,7 @@ public class Worksheet implements Closeable {
     private Range autoFilterRange = null;
 
     private Relationships relationships = new Relationships(this);
+
     /**
      * List of named ranges.
      */
@@ -307,7 +341,7 @@ public class Worksheet implements Closeable {
      * @return Worksheet name.
      */
     public String getName() {
-        return name;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -316,8 +350,8 @@ public class Worksheet implements Closeable {
      * @return List representing a range of rows to be repeated
      *              on each page when printing.
      */
-    public RepeatRowRange getRepeatingRows(){
-        return repeatingRows;
+    public RepeatRowRange getRepeatingRows() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -326,8 +360,8 @@ public class Worksheet implements Closeable {
      * @return Range of cells that autofilter is set to
      *             (null if autofilter is not set).
      */
-    public Range getAutoFilterRange(){
-        return autoFilterRange;
+    public Range getAutoFilterRange() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -336,8 +370,8 @@ public class Worksheet implements Closeable {
      * @return List representing a range of columns to be repeated
      *              on each page when printing.
      */
-    public RepeatColRange getRepeatingCols(){
-        return repeatingCols;
+    public RepeatColRange getRepeatingCols() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -347,7 +381,7 @@ public class Worksheet implements Closeable {
      *              where keys are the names and values are cell ranges.
      */
     public Map<String, Range> getNamedRanges() {
-        return namedRanges;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -356,7 +390,7 @@ public class Worksheet implements Closeable {
      * @return Parent workbook.
      */
     public Workbook getWorkbook() {
-        return workbook;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -367,36 +401,11 @@ public class Worksheet implements Closeable {
      * @return An existing or newly created cell.
      */
     Cell cell(int r, int c) {
-        // Check limits
-        if (r < 0 || r >= MAX_ROWS || c < 0 || c >= MAX_COLS) {
-            throw new IllegalArgumentException();
-        }
-        flushedCheck(r);
-
-        // Add null for missing rows.
-        while (r >= rows.size()) {
-            rows.add(null);
-        }
-        Cell[] row = rows.get(r);
-        if (row == null) {
-            int columns = Math.max(c + 1, (r > 0 && rows.get(r - 1) != null) ? rows.get(r - 1).length : (c + 1));
-            row = new Cell[columns];
-            rows.set(r, row);
-        } else if (c >= row.length) {
-            int columns = Math.max(c + 1, (r > 0 && rows.get(r - 1) != null) ? rows.get(r - 1).length : (c + 1));
-            Cell[] tmp = new Cell[columns];
-            System.arraycopy(row, 0, tmp, 0, row.length);
-            row = tmp;
-            rows.set(r, row);
-        }
-        if (row[c] == null) {
-            row[c] = new Cell();
-        }
-        return row[c];
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private void flushedCheck(int r) {
-        if(r < flushedRows){
+        if (r < flushedRows) {
             throw new IllegalStateException("Row " + r + " already flushed from memory.");
         }
     }
@@ -407,13 +416,7 @@ public class Worksheet implements Closeable {
      * @param range Range of cells.
      */
     void merge(Range range) {
-        if (!mergedMatrix.isConflict(range.getTop(),range.getLeft(),range.getBottom(),range.getRight())){
-            if (mergedRanges.add(range)) {
-                mergedMatrix.setRegion(range.getTop(),range.getLeft(),range.getBottom(),range.getRight());
-            }
-        }else {
-            throw new IllegalArgumentException("Merge conflicted:" +range);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -423,8 +426,9 @@ public class Worksheet implements Closeable {
      * @param fill Shading fill pattern.
      */
     void shadeAlternateRows(Range range, Fill fill) {
-        alternateShadingRanges.add(new AlternateShading(range, getWorkbook().cacheDifferentialFormat(new DifferentialFormat(null, null, fill, null, null, null))));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
+
     /**
      * Apply shading to Nth rows in the given range.
      *
@@ -433,15 +437,15 @@ public class Worksheet implements Closeable {
      * @param eachNRows Shading row frequency.
      */
     void shadeRows(Range range, Fill fill, int eachNRows) {
-        shadingRanges.add(new Shading(range, getWorkbook().cacheDifferentialFormat(new DifferentialFormat(null, null, fill, null, null, null)), eachNRows));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     void addConditionalFormatting(ConditionalFormatting conditionalFormatting) {
-        conditionalFormattings.add(conditionalFormatting);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     void addValidation(DataValidation validation) {
-        dataValidations.add(validation);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -451,11 +455,11 @@ public class Worksheet implements Closeable {
      * @param visibilityState New visibility state for this sheet.
      */
     public void setVisibilityState(VisibilityState visibilityState) {
-        this.visibilityState = visibilityState;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public VisibilityState getVisibilityState() {
-        return visibilityState;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -464,7 +468,7 @@ public class Worksheet implements Closeable {
      * @param row Zero-based row number
      */
     public void hideRow(int row) {
-        hiddenRows.add(row);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -473,7 +477,7 @@ public class Worksheet implements Closeable {
      * @param row Zero-based row number
      */
     public void showRow(int row) {
-        hiddenRows.remove(row);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -482,7 +486,7 @@ public class Worksheet implements Closeable {
      * @param column Zero-based column number
      */
     public void hideColumn(int column) {
-        hiddenColumns.add(column);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -491,16 +495,14 @@ public class Worksheet implements Closeable {
      * @param column Zero-based column number
      */
     public void showColumn(int column) {
-        hiddenColumns.remove(column);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Keep this sheet in active tab.
      */
     public void keepInActiveTab() {
-        int sheetIndex = workbook.getIndex(this);
-        //tabs are indexed from 0, sheets are indexed from 1
-        workbook.setActiveTab(sheetIndex - 1);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -509,7 +511,7 @@ public class Worksheet implements Closeable {
      * @param password The password to use.
      */
     public void protect(String password) {
-        protect(password, SheetProtectionOption.DEFAULT_OPTIONS);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -518,9 +520,7 @@ public class Worksheet implements Closeable {
      * @param options An array of all the {@link SheetProtectionOption}s to protect.
      */
     public void protect(String password, SheetProtectionOption... options) {
-        final EnumSet<SheetProtectionOption> optionSet = EnumSet.noneOf(SheetProtectionOption.class);
-        Collections.addAll(optionSet, options);
-        protect(password, optionSet);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -529,13 +529,7 @@ public class Worksheet implements Closeable {
      * @param options A {@link Set} of all the {@link SheetProtectionOption}s to protect.
      */
     public void protect(String password, Set<SheetProtectionOption> options) {
-        if (password == null) {
-            this.sheetProtectionOptions = null;
-            this.passwordHash = null;
-            return;
-        }
-        this.sheetProtectionOptions = options;
-        this.passwordHash = hashPassword(password);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -546,7 +540,7 @@ public class Worksheet implements Closeable {
      * @param rightCellNumber Right cell number where filter will be initialized
      */
     public void setAutoFilter(int topRowNumber, int leftCellNumber, int bottomRowNumber, int rightCellNumber) {
-        autoFilterRange = new Range(this, topRowNumber, leftCellNumber, bottomRowNumber, rightCellNumber);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -556,14 +550,14 @@ public class Worksheet implements Closeable {
      * @param rightCellNumber Right cell number where filter will be initialized
      */
     public void setAutoFilter(int rowNumber, int leftCellNumber, int rightCellNumber) {
-        setAutoFilter(rowNumber, leftCellNumber, this.rows.size()-1, rightCellNumber);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Removes auto filter from sheet. Does nothing if there wasn't any filter
      */
     public void removeAutoFilter() {
-        autoFilterRange = null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -585,7 +579,6 @@ public class Worksheet implements Closeable {
             hash ^= passwordCharacters.length;
             hash ^= (0x8000 | ('N' << 8) | 'K');
         }
-
         return Integer.toHexString(hash & 0xffff);
     }
 
@@ -604,10 +597,7 @@ public class Worksheet implements Closeable {
      * @param width The width of the column in character widths
      */
     public void width(int c, double width) {
-        if (width > MAX_COL_WIDTH) {
-            throw new IllegalArgumentException();
-        }
-        colWidths.put(c, width);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -617,10 +607,7 @@ public class Worksheet implements Closeable {
      * @param height New row height
      */
     public void rowHeight(int r, double height) {
-        if (height > MAX_ROW_HEIGHT) {
-            throw new IllegalArgumentException();
-        }
-        rowHeights.put(r, height);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -631,7 +618,7 @@ public class Worksheet implements Closeable {
      * @param value Cell value.
      */
     public void value(int r, int c, String value) {
-        cell(r, c).setValue(workbook, value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -642,7 +629,7 @@ public class Worksheet implements Closeable {
      * @param value Cell value.
      */
     public void value(int r, int c, Number value) {
-        cell(r, c).setValue(value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -653,7 +640,7 @@ public class Worksheet implements Closeable {
      * @param value Cell value.
      */
     public void value(int r, int c, Boolean value) {
-        cell(r, c).setValue(value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -667,7 +654,7 @@ public class Worksheet implements Closeable {
      * prefer passing a {@link ZonedDateTime}.
      */
     public void value(int r, int c, Date value) {
-        cell(r, c).setValue(value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -681,7 +668,7 @@ public class Worksheet implements Closeable {
      * prefer passing a {@link ZonedDateTime}.
      */
     public void value(int r, int c, LocalDateTime value) {
-        cell(r, c).setValue(value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -695,7 +682,7 @@ public class Worksheet implements Closeable {
      * prefer passing a {@link ZonedDateTime}.
      */
     public void value(int r, int c, LocalDate value) {
-        cell(r, c).setValue(value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -706,7 +693,7 @@ public class Worksheet implements Closeable {
      * @param value Cell value.
      */
     public void value(int r, int c, ZonedDateTime value) {
-        cell(r, c).setValue(value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -720,7 +707,7 @@ public class Worksheet implements Closeable {
      * prefer passing a {@link ZonedDateTime}.
      */
     public void value(int r, int c, Instant value) {
-        cell(r, c).setValue(value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -731,15 +718,11 @@ public class Worksheet implements Closeable {
      * @return Cell value (or {@link Formula}).
      */
     public Object value(int r, int c) {
-        flushedCheck(r);
-        Cell[] row = r < rows.size() ? rows.get(r) : null;
-        Cell cell = row == null || c >= row.length ? null : row[c];
-        return cell == null ? null : cell.getValue();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    public void hyperlink(int r, int c,HyperLink hyperLink) {
-        value(r,c,hyperLink.getDisplayStr());
-        this.addHyperlink(new Location(r,c),hyperLink);
+    public void hyperlink(int r, int c, HyperLink hyperLink) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -750,7 +733,7 @@ public class Worksheet implements Closeable {
      * @param expression Cell formula expression.
      */
     public void formula(int r, int c, String expression) {
-        cell(r, c).setFormula(expression);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -761,7 +744,7 @@ public class Worksheet implements Closeable {
      * @param value Cell value.
      */
     public void inlineString(int r, int c, String value) {
-        cell(r, c).setInlineString(value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -775,7 +758,7 @@ public class Worksheet implements Closeable {
      * @param value Cell value.
      */
     public void inlineString(int r, int c, RichText value) {
-        cell(r, c).setInlineString(value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -786,19 +769,17 @@ public class Worksheet implements Closeable {
      * @return Newly created style setter.
      */
     public StyleSetter style(int r, int c) {
-        return new Range(this, r, c, r, c).style();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-     /**
+    /**
      * Get a new style setter for a column.
      *
      * @param c Zero-based column number.
      * @return Newly created style setter.
      */
     public ColumnStyleSetter style(int c) {
-        Column column = colStyles.getOrDefault(c, new Column(this, c));
-        colStyles.put(c, column);
-        return column.style();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -813,7 +794,7 @@ public class Worksheet implements Closeable {
      * @return Newly created range.
      */
     public Range range(int top, int left, int bottom, int right) {
-        return new Range(this, top, left, bottom, right);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -834,7 +815,7 @@ public class Worksheet implements Closeable {
                 maxWidth = colWidths.get(c);
             } else {
                 for (int r = 0; r < rows.size(); ++r) {
-                    boolean isCellInMergedRanges = mergedMatrix.get(r,c);
+                    boolean isCellInMergedRanges = mergedMatrix.get(r, c);
                     // Exclude merged cells from computation && hidden rows
                     Object o = hiddenRows.contains(r) || isCellInMergedRanges ? null : value(r, c);
                     if (o != null && !(o instanceof Formula)) {
@@ -853,14 +834,13 @@ public class Worksheet implements Closeable {
                     started = true;
                 }
                 Integer style = colStyles.getOrDefault(c, Column.noStyle(this, c)).getStyle();
-                writeCol(w, c, maxWidth, bestFit, isHidden,groupLevel, style);
+                writeCol(w, c, maxWidth, bestFit, isHidden, groupLevel, style);
             }
         }
         if (started) {
             w.append("</cols>");
         }
     }
-
 
     /**
      * Write a column as an XML element.
@@ -873,15 +853,11 @@ public class Worksheet implements Closeable {
      * @param style Cached style index of the column
      * @throws IOException If an I/O error occurs.
      */
-    private static void writeCol(Writer w, int columnIndex, double maxWidth, boolean bestFit, boolean isHidden, int groupLevel,
-                                 int style) throws IOException {
+    private static void writeCol(Writer w, int columnIndex, double maxWidth, boolean bestFit, boolean isHidden, int groupLevel, int style) throws IOException {
         final int col = columnIndex + 1;
-        w.append("<col min=\"").append(col).append("\" max=\"").append(col).append("\" width=\"")
-                .append(Math.min(MAX_COL_WIDTH, maxWidth));
+        w.append("<col min=\"").append(col).append("\" max=\"").append(col).append("\" width=\"").append(Math.min(MAX_COL_WIDTH, maxWidth));
         w.append("\" outlineLevel=\"").append(groupLevel);
-        w.append("\" customWidth=\"true\" bestFit=\"")
-                .append(String.valueOf(bestFit));
-
+        w.append("\" customWidth=\"true\" bestFit=\"").append(String.valueOf(bestFit));
         if (isHidden) {
             w.append("\" hidden=\"true");
         }
@@ -889,7 +865,6 @@ public class Worksheet implements Closeable {
         if (style > 0) {
             w.append(" style=\"").append(style).append("\"");
         }
-
         w.append("/>");
     }
 
@@ -898,13 +873,13 @@ public class Worksheet implements Closeable {
      * e.g. "B3" from cell position (2, 1)
      */
     private static String getCellMark(int row, int col) {
-        return CellAddress.format(row,col).toString();
+        return CellAddress.format(row, col).toString();
     }
 
-	@Override
-	public void close() throws IOException {
-		finish();
-	}
+    @Override
+    public void close() throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
     /**
      * Finish the construction of this worksheet. This creates the worksheet
@@ -914,171 +889,7 @@ public class Worksheet implements Closeable {
      * @throws IOException If an I/O error occurs.
      */
     public void finish() throws IOException {
-        if (finished) {
-            return;
-        }
-        flush();
-        int index = workbook.getIndex(this);
-        writer.append("</sheetData>");
-
-        if (passwordHash != null) {
-            writer.append("<sheetProtection password=\"").append(passwordHash).append("\" ");
-            for (SheetProtectionOption option : SheetProtectionOption.values()) {
-                if (option.getDefaultValue() != sheetProtectionOptions.contains(option)) {
-                    writer.append(option.getName()).append("=\"").append(Boolean.toString(!option.getDefaultValue())).append("\" ");
-                }
-            }
-            writer.append("/>");
-        }
-        if (autoFilterRange != null) {
-            writer.append("<autoFilter ref=\"")
-                    .append(autoFilterRange.toString())
-                    .append("\">").append("</autoFilter>");
-        }
-        if (!mergedRanges.isEmpty()) {
-            writer.append("<mergeCells>");
-            for (Range r : mergedRanges) {
-                writer.append("<mergeCell ref=\"").append(r.toString()).append("\"/>");
-            }
-            writer.append("</mergeCells>");
-        }
-        if (!conditionalFormattings.isEmpty()) {
-            int priority = 1;
-            for (ConditionalFormatting v: conditionalFormattings) {
-                v.getConditionalFormattingRule().setPriority(priority++);
-                v.write(writer);
-            }
-        }
-        for (AlternateShading a : alternateShadingRanges) {
-            a.write(writer);
-        }
-        for (Shading s : shadingRanges) {
-            s.write(writer);
-        }
-        if (!dataValidations.isEmpty()) {
-            writer.append("<dataValidations count=\"").append(dataValidations.size()).append("\">");
-            for (DataValidation v: dataValidations) {
-                v.write(writer);
-            }
-            writer.append("</dataValidations>");
-        }
-        if (!hyperlinkRanges.isEmpty()) {
-            writer.append("<hyperlinks>");
-            for (Map.Entry<HyperLink, Ref> hr : hyperlinkRanges.entrySet()) {
-                HyperLink hyperLink = hr.getKey();
-                writer.append("<hyperlink ");
-                Ref ref = hr.getValue();
-                writer.append("ref=\"" + ref.toString()+"\" ");
-                if (hyperLink.getHyperLinkType().equals(HyperLinkType.EXTERNAL)) {
-                    String rId = relationships.setHyperLinkRels(hyperLink.getLinkStr(), "External");
-                    writer.append("r:id=\"" + rId +"\" ");
-                }else{
-                    writer.append("location=\"").append(escape(hyperLink.getLinkStr())).append("\"");
-                }
-                writer.append("/>");
-            }
-            writer.append("</hyperlinks>");
-        }
-        /* set page margins for the print setup (see in print preview) */
-        String margins = "<pageMargins bottom=\"" + bottomMargin +
-                         "\" footer=\"" + footerMargin +
-                         "\" header=\"" + headerMargin +
-                         "\" left=\"" + leftMargin +
-                         "\" right=\"" + rightMargin +
-                         "\" top=\"" + topMargin + "\"/>";
-        writer.append(margins);
-
-        /* set page orientation for the print setup */
-        writer.append("<pageSetup")
-            .append(" paperSize=\"" + paperSize.xmlValue + "\"")
-            .append(" scale=\"" + pageScale + "\"")
-            .append(" fitToWidth=\"" + fitToWidth + "\"")
-            .append(" fitToHeight=\"" + fitToHeight + "\"")
-            .append(" firstPageNumber=\"" + firstPageNumber + "\"")
-            .append(" useFirstPageNumber=\"" + useFirstPageNumber.toString() + "\"")
-            .append(" blackAndWhite=\"" + blackAndWhite.toString() + "\"")
-            .append(" orientation=\"" + pageOrientation + "\"")
-            .append("/>");
-
-        /* write to header and footer */
-        writer.append("<headerFooter differentFirst=\"false\" differentOddEven=\"false\">");
-        writer.append("<oddHeader>");
-        for (MarginalInformation headerEntry : header.values()) {
-            headerEntry.write(writer);
-        }
-        writer.append("</oddHeader>");
-        writer.append("<oddFooter>");
-        for (MarginalInformation footerEntry : footer.values()) {
-            footerEntry.write(writer);
-        }
-        writer.append("</oddFooter></headerFooter>");
-
-
-        // Drawing references
-        if (!pictures.isEmpty() || !comments.isEmpty()) {
-            if (!pictures.isEmpty()) {
-                // Pictures need drawing.xml reference
-                if (drawingRelId == null) {
-                    drawingRelId = relationships.setImageDrawingRels(index);
-                }
-                writer.append("<drawing r:id=\"").append(drawingRelId).append("\"/>");
-            } else if (!comments.isEmpty()) {
-                // Comments only need drawing reference with fixed ID
-                writer.append("<drawing r:id=\"d\"/>");
-            }
-            if (!comments.isEmpty()) {
-                // Comments need legacyDrawing (VML)
-                writer.append("<legacyDrawing r:id=\"v\"/>");
-            }
-        }
-        if (!tables.isEmpty()){
-            writer.append("<tableParts count=\""+tables.size()+"\">");
-            for (Map.Entry<String, Table> entry : tables.entrySet()) {
-                writer.append("<tablePart r:id=\""+entry.getKey()+"\"/>");
-            }
-            writer.append("</tableParts>");
-        }
-
-        writer.append("</worksheet>");
-        workbook.endFile();
-
-        /* write picture files */
-        if (!pictures.isEmpty()) {
-            // First, write the drawing relationships file (this assigns rIds to pictures)
-            workbook.writeFile("xl/drawings/_rels/drawing" + index + ".xml.rels",
-                w -> pictures.writeDrawingRels(w, index));
-            // Then write the drawing file
-            workbook.writeFile("xl/drawings/drawing" + index + ".xml", pictures::writeDrawing);
-            // Finally write the actual image binary files
-            pictures.writeMediaFiles(workbook, index);
-        }
-
-        /* write comment files */
-        if (!comments.isEmpty()) {
-            workbook.writeFile("xl/comments" + index + ".xml", comments::writeComments);
-            workbook.writeFile("xl/drawings/vmlDrawing" + index + ".vml", comments::writeVmlDrawing);
-            if (pictures.isEmpty()) {
-                // Only write empty drawing.xml for comments if no pictures
-                workbook.writeFile("xl/drawings/drawing" + index + ".xml", comments::writeDrawing);
-                relationships.setCommentsRels(index);
-            } else {
-                // Comments coexist with pictures - only set VML relationship
-                relationships.setCommentsOnlyRels(index);
-            }
-        }
-        //write table files
-        for (Map.Entry<String, Table> entry : tables.entrySet()) {
-            Table table = entry.getValue();
-            workbook.writeFile("xl/tables/table" + table.index + ".xml",table::write);
-        }
-
-        // write relationship files
-        if (!relationships.isEmpty()) {
-            workbook.writeFile("xl/worksheets/_rels/sheet"+index+".xml.rels",relationships::write);
-        }
-        // Free memory; we no longer need this data
-        rows.clear();
-        finished = true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1095,110 +906,28 @@ public class Worksheet implements Closeable {
      * @throws IOException If an I/O error occurs.
      */
     public void flush() throws IOException {
-        if (writer == null) {
-            int index = workbook.getIndex(this);
-            writer = workbook.beginFile("xl/worksheets/sheet" + index + ".xml");
-            writer.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-            writer.append("<worksheet xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\">");
-            writer.append("<sheetPr filterMode=\"" + "false" + "\">");
-            if (tabColor != null) {
-                writer.append("<tabColor rgb=\"" + tabColor + "\"/>");
-            }
-            if (!rowSumsBelow || !rowSumsRight) {
-                writer.append("<outlinePr ");
-                if (!rowSumsBelow) {
-                    writer.append("summaryBelow=\"0\" ");
-                }
-                if (!rowSumsRight) {
-                    writer.append("summaryRight=\"0\" ");
-                }
-                writer.append("/>");
-            }
-            writer.append("<pageSetUpPr fitToPage=\"" + fitToPage + "\" " + "autoPageBreaks=\"" + autoPageBreaks + "\"/></sheetPr>");
-            writer.append("<dimension ref=\"A1\"/>");
-            writer.append("<sheetViews><sheetView workbookViewId=\"0\"");
-            if (!showGridLines) {
-                writer.append(" showGridLines=\"false\"");
-            }
-            if (rightToLeft) {
-                writer.append(" rightToLeft=\"true\"");
-            }
-            if (zoomScale != 100) {
-                writer.append(" zoomScale=\"").append(zoomScale).append("\"");
-            }
-            writer.append(">");
-            if (freezeLeftColumns > 0 || freezeTopRows > 0) {
-                writeFreezePane(writer);
-            }
-            writer.append("</sheetView>");
-            writer.append("</sheetViews><sheetFormatPr defaultRowHeight=\"15.0\"/>");
-            final int nbCols = rows.stream().filter(Objects::nonNull).mapToInt(r -> r.length).max().orElse(0);
-            final int maxHideCol = hiddenColumns.stream().mapToInt(a -> a).max().orElse(0);
-            final int maxStyleCol = colStyles.values().stream().mapToInt(Column::getColNumber).max().orElse(0);
-            final int maxNoZeroIndex = groupColumns.getMaxNoZeroIndex();
-            if (nbCols > 0 || !hiddenColumns.isEmpty()||maxNoZeroIndex!=-1 || !colStyles.isEmpty()) {
-                int maxCol = Math.max(nbCols, Math.max(Math.max(maxHideCol,maxNoZeroIndex), maxStyleCol) + 1);
-                writeCols(writer, maxCol);
-            }
-            writer.append("<sheetData>");
-        }
-        final int nbRows = rows.size();
-        final int maxHideRow = hiddenRows.stream().mapToInt(a -> a).max().orElse(0);
-        final int maxGroupRow = groupRows.getMaxNoZeroIndex();
-        final int maxRow = Math.max(nbRows, Math.max(maxGroupRow,maxHideRow) + 1);
-        for (int r = flushedRows; r < maxRow; ++r) {
-            boolean notEmptyRow = r < rows.size();
-            Cell[] row = notEmptyRow ? rows.get(r) : null;
-            boolean isHidden = hiddenRows.contains(r);
-            byte groupLevel = groupRows.get(r);
-            if (row != null || isHidden || groupLevel != 0) {
-                writeRow(writer, r, isHidden,groupLevel,
-                        rowHeights.get(r), row);
-            }
-            if (notEmptyRow) {
-                rows.set(r, null); // free flushed row data
-            }
-        }
-        flushedRows = maxRow - 1;
-
-
-        writer.flush();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Writes corresponding pane definitions into XML and freezes pane.
      */
     private void writeFreezePane(Writer w) throws IOException {
-        String activePane = freezeLeftColumns==0 ? "bottomLeft" : freezeTopRows==0 ? "topRight" : "bottomRight";
-        String freezePane = "<pane xSplit=\"" + freezeLeftColumns +
-                            "\" ySplit=\"" + freezeTopRows + "\" topLeftCell=\"" +
-                            getCellMark(freezeTopRows, freezeLeftColumns) +
-                            "\" activePane=\"" + activePane + "\" state=\"frozen\"/>";
+        String activePane = freezeLeftColumns == 0 ? "bottomLeft" : freezeTopRows == 0 ? "topRight" : "bottomRight";
+        String freezePane = "<pane xSplit=\"" + freezeLeftColumns + "\" ySplit=\"" + freezeTopRows + "\" topLeftCell=\"" + getCellMark(freezeTopRows, freezeLeftColumns) + "\" activePane=\"" + activePane + "\" state=\"frozen\"/>";
         w.append(freezePane);
-        String topLeftPane = "<selection pane=\"topLeft\" activeCell=\"" +
-                             getCellMark(0, 0) +
-                             "\" activeCellId=\"0\" sqref=\"" +
-                             getCellMark(0, 0) + "\"/>";
+        String topLeftPane = "<selection pane=\"topLeft\" activeCell=\"" + getCellMark(0, 0) + "\" activeCellId=\"0\" sqref=\"" + getCellMark(0, 0) + "\"/>";
         w.append(topLeftPane);
         if (freezeLeftColumns != 0) {
-            String topRightPane = "<selection pane=\"topRight\" activeCell=\"" +
-                                  getCellMark(0, freezeLeftColumns) +
-                                  "\" activeCellId=\"0\" sqref=\"" +
-                                  getCellMark(0, freezeLeftColumns) + "\"/>";
+            String topRightPane = "<selection pane=\"topRight\" activeCell=\"" + getCellMark(0, freezeLeftColumns) + "\" activeCellId=\"0\" sqref=\"" + getCellMark(0, freezeLeftColumns) + "\"/>";
             w.append(topRightPane);
         }
-        if (freezeTopRows !=0 ) {
-            String bottomLeftPane = "<selection pane=\"bottomLeft\" activeCell=\"" +
-                                    getCellMark(freezeTopRows, 0) +
-                                    "\" activeCellId=\"0\" sqref=\"" +
-                                    getCellMark(freezeTopRows, 0) + "\"/>";
+        if (freezeTopRows != 0) {
+            String bottomLeftPane = "<selection pane=\"bottomLeft\" activeCell=\"" + getCellMark(freezeTopRows, 0) + "\" activeCellId=\"0\" sqref=\"" + getCellMark(freezeTopRows, 0) + "\"/>";
             w.append(bottomLeftPane);
         }
         if (freezeLeftColumns != 0 && freezeTopRows != 0) {
-            String bottomRightPane = "<selection pane=\"bottomRight\" activeCell=\"" +
-                                     getCellMark(freezeTopRows, freezeLeftColumns) +
-                                     "\" activeCellId=\"0\" sqref=\"" +
-                                     getCellMark(freezeTopRows, freezeLeftColumns) + "\"/>";
+            String bottomRightPane = "<selection pane=\"bottomRight\" activeCell=\"" + getCellMark(freezeTopRows, freezeLeftColumns) + "\" activeCellId=\"0\" sqref=\"" + getCellMark(freezeTopRows, freezeLeftColumns) + "\"/>";
             w.append(bottomRightPane);
         }
     }
@@ -1214,25 +943,19 @@ public class Worksheet implements Closeable {
      * @param row Cells in the row.
      * @throws IOException If an I/O error occurs.
      */
-    private static void writeRow(Writer w, int r, boolean isHidden,byte groupLevel,
-                                 Double rowHeight, Cell... row) throws IOException {
+    private static void writeRow(Writer w, int r, boolean isHidden, byte groupLevel, Double rowHeight, Cell... row) throws IOException {
         w.append("<row r=\"").append(r + 1).append("\"");
         if (isHidden) {
             w.append(" hidden=\"true\"");
         }
-        if(rowHeight != null) {
-            w.append(" ht=\"")
-             .append(rowHeight)
-             .append("\"")
-             .append(" customHeight=\"1\"");
+        if (rowHeight != null) {
+            w.append(" ht=\"").append(rowHeight).append("\"").append(" customHeight=\"1\"");
         }
-        if (groupLevel!=0){
-            w.append(" outlineLevel=\"")
-                    .append(groupLevel)
-                    .append("\"");
+        if (groupLevel != 0) {
+            w.append(" outlineLevel=\"").append(groupLevel).append("\"");
         }
         w.append(">");
-        if (null!=row) {
+        if (null != row) {
             for (int c = 0; c < row.length; ++c) {
                 if (row[c] != null) {
                     row[c].write(w, r, c);
@@ -1252,7 +975,7 @@ public class Worksheet implements Closeable {
      * @param comment Note text
      */
     public void comment(int r, int c, String comment) {
-        comments.set(r, c, comment);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1269,7 +992,7 @@ public class Worksheet implements Closeable {
      * @return The created Picture object for further customization
      */
     public Picture addImage(int row, int col, byte[] imageData, int widthPx, int heightPx) {
-        return pictures.addPicture(row, col, imageData, widthPx, heightPx);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1286,7 +1009,7 @@ public class Worksheet implements Closeable {
      * @return The created Picture object for further customization
      */
     public Picture addImage(int fromRow, int fromCol, int toRow, int toCol, byte[] imageData) {
-        return pictures.addPicture(fromRow, fromCol, toRow, toCol, imageData);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1300,7 +1023,7 @@ public class Worksheet implements Closeable {
      * @return The created Picture object
      */
     public Picture addImage(PictureAnchor anchor, byte[] imageData) {
-        return pictures.addPicture(anchor, imageData, null, true);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1316,21 +1039,21 @@ public class Worksheet implements Closeable {
      * @return The created Picture object
      */
     public Picture addImage(PictureAnchor anchor, byte[] imageData, String name, boolean lockAspectRatio) {
-        return pictures.addPicture(anchor, imageData, name, lockAspectRatio);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Hide grid lines.
      */
     public void hideGridLines() {
-        this.showGridLines = false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Display the worksheet from right to left
      */
     public void rightToLeft() {
-        this.rightToLeft = true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1338,19 +1061,15 @@ public class Worksheet implements Closeable {
      * @param zoomPercent - zoom level from 10 to 400
      */
     public void setZoom(int zoomPercent) {
-        if (10 <= zoomPercent && zoomPercent <= 400) {
-            this.zoomScale = zoomPercent;
-        }else{
-            throw new IllegalArgumentException("zoom must be within 10 and 400 inclusive");
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public void setAutoPageBreaks(Boolean autoPageBreaks) {
-        this.autoPageBreaks = autoPageBreaks;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public void setFitToPage(Boolean fitToPage) {
-        this.fitToPage = fitToPage;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1359,16 +1078,14 @@ public class Worksheet implements Closeable {
      * @param nTopRows - number of rows from the top that will remain frozen
      */
     public void freezePane(int nLeftColumns, int nTopRows) {
-        this.freezeLeftColumns = nLeftColumns;
-        this.freezeTopRows = nTopRows;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Unfreeze any frozen rows, or columns.
      */
     public void unfreeze() {
-        this.freezeLeftColumns = 0;
-        this.freezeTopRows = 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1376,7 +1093,7 @@ public class Worksheet implements Closeable {
      * @param margin - header margin in inches
      */
     public void headerMargin(float margin) {
-        this.headerMargin = margin;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1384,7 +1101,7 @@ public class Worksheet implements Closeable {
      * @param margin - footer page margin in inches
      */
     public void footerMargin(float margin) {
-        this.footerMargin = margin;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1392,7 +1109,7 @@ public class Worksheet implements Closeable {
      * @param margin - top page margin in inches
      */
     public void topMargin(float margin) {
-        this.topMargin = margin;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1400,7 +1117,7 @@ public class Worksheet implements Closeable {
      * @param margin - bottom page margin in inches
      */
     public void bottomMargin(float margin) {
-        this.bottomMargin = margin;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1408,7 +1125,7 @@ public class Worksheet implements Closeable {
      * @param margin - left page margin in inches
      */
     public void leftMargin(float margin) {
-        this.leftMargin = margin;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1416,7 +1133,7 @@ public class Worksheet implements Closeable {
      * @param margin - right page margin in inches
      */
     public void rightMargin(float margin) {
-        this.rightMargin = margin;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1424,61 +1141,61 @@ public class Worksheet implements Closeable {
      * @param orientation New page orientation for this worksheet
      */
     public void pageOrientation(String orientation) {
-        this.pageOrientation = orientation;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
+
     /**
      * Set the paper size.
      * @param size New paper size for this worksheet
      */
     public void paperSize(PaperSize size) {
-        this.paperSize = size;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
+
     /**
      * @param scale = scaling factor for the print setup (between 1 and 100)
-     *
      */
     public void pageScale(int scale) {
-        this.pageScale = scale;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
+
     /**
      * @param pageNumber - first page number (default: 0)
      */
     public void firstPageNumber(int pageNumber) {
-        this.firstPageNumber = pageNumber;
-        this.useFirstPageNumber = true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public void fitToHeight(Short fitToHeight) {
-        this.fitToPage = true;
-        this.fitToHeight = fitToHeight;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public void fitToWidth(Short fitToWidth) {
-        this.fitToPage = true;
-        this.fitToWidth = fitToWidth;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public void printInBlackAndWhite() {
-        this.blackAndWhite = true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
+
     public void printInColor() {
-        this.blackAndWhite = false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public void repeatRows(int startRow, int endRow) {
-        this.repeatingRows = new RepeatRowRange(startRow, endRow);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public void repeatRows(int row) {
-        this.repeatingRows = new RepeatRowRange(row, row);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public void repeatCols(int startCol, int endCol) {
-        this.repeatingCols = new RepeatColRange(startCol, endCol);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public void repeatCols(int col) {
-        this.repeatingCols = new RepeatColRange(col, col);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1487,7 +1204,7 @@ public class Worksheet implements Closeable {
      * @param position - Position.LEFT/RIGHT/CENTER enum
      */
     public void footer(String text, Position position) {
-        this.footer.put(position, new MarginalInformation(text, position));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1497,8 +1214,7 @@ public class Worksheet implements Closeable {
      * @param fontSize - integer describing font size
      */
     public void footer(String text, Position position, int fontSize) {
-        this.footer.put(position, new MarginalInformation(text, position)
-            .withFontSize(fontSize));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1509,9 +1225,7 @@ public class Worksheet implements Closeable {
      * @param fontSize - integer describing font size
      */
     public void footer(String text, Position position, String fontName, int fontSize) {
-        this.footer.put(position, new MarginalInformation(text, position)
-            .withFont(fontName)
-            .withFontSize(fontSize));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1522,9 +1236,7 @@ public class Worksheet implements Closeable {
      * @param fontSize - integer describing font size
      */
     public void header(String text, Position position, String fontName, int fontSize) {
-        this.header.put(position, new MarginalInformation(text, position)
-            .withFont(fontName)
-            .withFontSize(fontSize));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1534,8 +1246,7 @@ public class Worksheet implements Closeable {
      * @param fontSize - integer describing font size
      */
     public void header(String text, Position position, int fontSize) {
-        this.header.put(position, new MarginalInformation(text, position)
-            .withFontSize(fontSize));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1544,7 +1255,7 @@ public class Worksheet implements Closeable {
      * @param position - Position.LEFT/RIGHT/CENTER enum
      */
     public void header(String text, Position position) {
-        this.header.put(position, new MarginalInformation(text, position));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1555,50 +1266,39 @@ public class Worksheet implements Closeable {
      *
      * @param range Range of cells that needs to be named.
      * @param name String representing the given cell range's name.
-     *
      */
     public void addNamedRange(Range range, String name) {
-        this.namedRanges.put(name, range);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     void addHyperlink(Ref ref, HyperLink hyperLink) {
-        this.hyperlinkRanges.put(hyperLink, ref);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 
     Table addTable(Range range, String... headers) {
-        if (!tablesMatrix.isConflict(range.getTop(), range.getLeft(), range.getBottom(), range.getRight())) {
-            int tableIndex = getWorkbook().nextTableIndex();
-            String rId = relationships.setTableRels(tableIndex);
-            Table table = new Table(tableIndex, range, headers);
-            tables.put(rId, table);
-            tablesMatrix.setRegion(range.getTop(), range.getLeft(), range.getBottom(), range.getRight());
-            return table;
-        } else {
-            throw new IllegalArgumentException("Table conflicted:" + range);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    public void groupCols(int from , int to) {
-        IntStream.rangeClosed(Math.min(from,to),Math.max(from,to)).forEach(groupColumns::increase);
+    public void groupCols(int from, int to) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    public void groupRows(int from , int to) {
-        IntStream.rangeClosed(Math.min(from,to),Math.max(from,to)).forEach(groupRows::increase);
+    public void groupRows(int from, int to) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public void rowSumsBelow(boolean rowSumsBelow) {
-        this.rowSumsBelow = rowSumsBelow;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public void rowSumsRight(boolean rowSumsRight) {
-        this.rowSumsRight = rowSumsRight;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param rgbColor FFF381E0
      */
     public void setTabColor(String rgbColor) {
-        this.tabColor = rgbColor;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

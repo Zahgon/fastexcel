@@ -58,7 +58,7 @@ class BorderElement {
      * @return New border element.
      */
     BorderElement updateStyle(String style) {
-        return new BorderElement(style, this.rgbColor);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -68,24 +68,17 @@ class BorderElement {
      * @return New border element.
      */
     BorderElement updateColor(String rgbColor) {
-        return new BorderElement(this.style, rgbColor);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(style, rgbColor);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(Object obj) {
-        boolean result;
-        if (obj != null && obj.getClass() == this.getClass()) {
-            BorderElement other = (BorderElement) obj;
-            result = Objects.equals(style, other.style) && Objects.equals(rgbColor, other.rgbColor);
-        } else {
-            result = false;
-        }
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -96,18 +89,6 @@ class BorderElement {
      * @throws IOException If an I/O error occurs.
      */
     void write(String name, Writer w) throws IOException {
-        w.append("<").append(name);
-        if (style == null && rgbColor == null) {
-            w.append("/>");
-        } else {
-            if (style != null) {
-                w.append(" style=\"").append(style).append('\"');
-            }
-            w.append('>');
-            if (rgbColor != null) {
-                w.append("<color rgb=\"").append(rgbColor).append("\"/>");
-            }
-            w.append("</").append(name).append(">");
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

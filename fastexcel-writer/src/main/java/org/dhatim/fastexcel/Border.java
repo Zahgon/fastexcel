@@ -32,6 +32,7 @@ class Border {
      * Border elements.
      */
     final Map<BorderSide, BorderElement> elements = new EnumMap<>(BorderSide.class);
+
     /**
      * Diagonal properties
      */
@@ -77,7 +78,7 @@ class Border {
      * @param element Border element.
      */
     void setElement(BorderSide side, BorderElement element) {
-        elements.put(side, element);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -86,7 +87,7 @@ class Border {
      * @param diagonalProperty Diagonal property.
      */
     void setDiagonalProperty(DiagonalProperty diagonalProperty) {
-        diagonalProperties.add(diagonalProperty);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -98,25 +99,17 @@ class Border {
      * @return A new border object.
      */
     static Border fromStyleAndColor(String style, String color) {
-        BorderElement element = new BorderElement(style, color);
-        return new Border(element, element, element, element, BorderElement.NONE);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(elements, diagonalProperties);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(Object obj) {
-        boolean result;
-        if (obj != null && obj.getClass() == this.getClass()) {
-            Border other = (Border) obj;
-            result = elements.equals(other.elements) && diagonalProperties.equals(other.diagonalProperties);
-        } else {
-            result = false;
-        }
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -126,20 +119,6 @@ class Border {
      * @throws IOException If an I/O error occurs.
      */
     void write(Writer w) throws IOException {
-        w.append("<border");
-        if (diagonalProperties.contains(DiagonalProperty.DIAGONAL_UP)) {
-            w.append(" diagonalUp=\"1\"");
-        }
-        if (diagonalProperties.contains(DiagonalProperty.DIAGONAL_DOWN)) {
-            w.append(" diagonalDown=\"1\"");
-        }
-        w.append(">");
-        elements.get(BorderSide.LEFT).write("left", w);
-        elements.get(BorderSide.RIGHT).write("right", w);
-        elements.get(BorderSide.TOP).write("top", w);
-        elements.get(BorderSide.BOTTOM).write("bottom", w);
-        elements.get(BorderSide.DIAGONAL).write("diagonal", w);
-        w.append("</border>");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

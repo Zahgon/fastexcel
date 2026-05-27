@@ -24,7 +24,7 @@ package org.dhatim.fastexcel;
  *  ws.range(1, 1, 1, 10).style().borderStyle("thin").bold().fillColor(Color.GRAY4).horizontalAlignment("center").set();
  * </pre></blockquote>
  */
-public class StyleSetter extends GenericStyleSetter<StyleSetter>{
+public class StyleSetter extends GenericStyleSetter<StyleSetter> {
 
     /**
      * Range of cells where the style is applied.
@@ -47,8 +47,7 @@ public class StyleSetter extends GenericStyleSetter<StyleSetter>{
      * @return This style setter.
      */
     public StyleSetter merge() {
-        range.merge();
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -56,16 +55,16 @@ public class StyleSetter extends GenericStyleSetter<StyleSetter>{
      * done otherwise style changes are lost!</b>
      */
     public void set() {
-        super.setStyle(true, range.getStyles(), range::applyStyle);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     protected Range getRange() {
-        return this.range;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     protected StyleSetter getThis() {
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

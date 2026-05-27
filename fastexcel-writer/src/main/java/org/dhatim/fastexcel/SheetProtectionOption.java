@@ -12,77 +12,62 @@ public enum SheetProtectionOption {
      * Autofilters are locked when the sheet is protected.
      */
     AUTO_FILTER("autoFilter", true),
-
     /**
      * Deleting columns is locked when the sheet is protected.
      */
     DELETE_COLUMNS("deleteColumns", true),
-
     /**
      * Deleting rows is locked when the sheet is protected.
      */
     DELETE_ROWS("deleteRows", true),
-
     /**
      * Formatting cells is locked when the sheet is protected.
      */
     FORMAT_CELLS("formatCells", true),
-
     /**
      * Formatting columns is locked when the sheet is protected.
      */
     FORMAT_COLUMNS("formatColumns", true),
-
     /**
      * Formatting rows is locked when the sheet is protected.
      */
     FORMAT_ROWS("formatRows", true),
-
     /**
      * Inserting columns is locked when the sheet is protected.
      */
     INSERT_COLUMNS("insertColumns", true),
-
     /**
      * Inserting hyperlinks is locked when the sheet is protected.
      */
     INSERT_HYPERLINKS("insertHyperlinks", true),
-
     /**
      * Inserting rows is locked when the sheet is protected.
      */
     INSERT_ROWS("insertRows", true),
-
     /**
      * Pivot tables are locked when the sheet is protected.
      */
     PIVOT_TABLES("pivotTables", true),
-
     /**
      * Sorting is locked when the sheet is protected.
      */
     SORT("sort", true),
-
     /**
      * Sheet is locked when the sheet is protected.
      */
     SHEET("sheet", false),
-
     /**
      * Objects are locked when the sheet is protected.
      */
     OBJECTS("objects", false),
-
     /**
      * Scenarios are locked when the sheet is protected.
      */
     SCENARIOS("scenarios", false),
-
     /**
      * Selection of locked cells is locked when the sheet is protected.
      */
     SELECT_LOCKED_CELLS("selectLockedCells", false),
-
     /**
      * Selection of unlocked cells is locked when the sheet is protected.
      */
@@ -108,9 +93,10 @@ public enum SheetProtectionOption {
     }
 
     public String getName() {
-        return name;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public boolean getDefaultValue() {
-        return defaultValue;
-    }}
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+}

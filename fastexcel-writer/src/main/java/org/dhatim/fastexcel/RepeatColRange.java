@@ -17,11 +17,14 @@ package org.dhatim.fastexcel;
 
 import static org.dhatim.fastexcel.CellAddress.convertNumToColString;
 
-/** This class represents a range of columns for the
- *      repeating columns feature in the print setup. */
+/**
+ * This class represents a range of columns for the
+ *      repeating columns feature in the print setup.
+ */
 class RepeatColRange implements Ref {
-    
+
     final int from;
+
     final int to;
 
     public RepeatColRange(int from, int to) {
@@ -34,6 +37,6 @@ class RepeatColRange implements Ref {
      */
     @Override
     public String toString() {
-        return "$" + convertNumToColString(from) + ":$" + convertNumToColString(to);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

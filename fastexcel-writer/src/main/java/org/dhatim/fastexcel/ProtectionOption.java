@@ -16,7 +16,6 @@ public enum ProtectionOption {
      * will not display the formula used to calculate the result.
      */
     HIDDEN("hidden"),
-
     /**
      * A boolean value indicating if the cell is locked. When cells are marked as "locked" and the sheet is protected,
      * then the options specified in the Sheet Part's &lt;sheetProtection&gt; element (§3.3.1.81) are prohibited for
@@ -36,6 +35,6 @@ public enum ProtectionOption {
     }
 
     public String getName() {
-        return name;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

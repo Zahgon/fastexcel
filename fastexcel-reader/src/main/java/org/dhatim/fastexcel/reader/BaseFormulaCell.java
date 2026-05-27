@@ -1,11 +1,12 @@
 package org.dhatim.fastexcel.reader;
 
 public class BaseFormulaCell {
+
     private final CellAddress baseCelAddr;
 
     private final String formula;
-    private final CellRangeAddress ref;
 
+    private final CellRangeAddress ref;
 
     public BaseFormulaCell(CellAddress baseCelAddr, String formula, CellRangeAddress ref) {
         this.baseCelAddr = baseCelAddr;
@@ -14,14 +15,14 @@ public class BaseFormulaCell {
     }
 
     public CellAddress getBaseCelAddr() {
-        return baseCelAddr;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public String getFormula() {
-        return formula;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public CellRangeAddress getRef() {
-        return ref;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

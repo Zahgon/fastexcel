@@ -27,10 +27,12 @@ class Shading {
      * Range where alternate rows are shaded.
      */
     private final Range range;
+
     /**
      *  Index of cached fill pattern for shaded rows.
      */
     private final int fill;
+
     /**
      * Shading frequency (each Nth row will be shaded).
      */
@@ -42,11 +44,10 @@ class Shading {
      * @param range Range where alternate rows are shaded.
      * @param fill Index of cached fill pattern for shaded rows.
      */
-    
     Shading(Range range, int fill, int eachNRows) {
         this.range = range;
         this.fill = fill;
-        this.eachNRows = eachNRows; 
+        this.eachNRows = eachNRows;
     }
 
     /**
@@ -55,7 +56,7 @@ class Shading {
      * @return Shading row frequency.
      */
     public int getEachNRows() {
-        return eachNRows;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -65,7 +66,6 @@ class Shading {
      * @throws IOException If an I/O error occurs.
      */
     void write(Writer w) throws IOException {
-        String formula = "NOT(MOD(ROW()-" + range.getTop() + "," + eachNRows + "))";
-        w.append("<conditionalFormatting sqref=\"").append(range.toString()).append("\"><cfRule type=\"expression\" dxfId=\"").append(fill).append("\" priority=\"1\"><formula>" + formula + "</formula></cfRule></conditionalFormatting>");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

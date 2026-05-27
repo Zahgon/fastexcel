@@ -23,6 +23,7 @@ import java.util.Objects;
 class CachedString {
 
     private final String string;
+
     private final int index;
 
     /**
@@ -43,7 +44,7 @@ class CachedString {
      * @return String value.
      */
     String getString() {
-        return string;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -52,7 +53,6 @@ class CachedString {
      * @return Cache index.
      */
     int getIndex() {
-        return index;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

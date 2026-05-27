@@ -18,7 +18,9 @@ package org.dhatim.fastexcel;
 import java.nio.charset.StandardCharsets;
 
 final class CellAddress {
+
     private static final int COL_RADIX = 'Z' - 'A' + 1;
+
     private static final String[] CACHED_COLS = new String[1024];
 
     static {
@@ -28,27 +30,21 @@ final class CellAddress {
     }
 
     static StringBuilder format(int row, int col) {
-        return format(new StringBuilder(), row, col);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     static StringBuilder format(StringBuilder sb, int row, int col) {
-        sb.append(convertNumToColString(col));
-        sb.append(row + 1);
-        return sb;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     static String convertNumToColString(int col) {
-        if (col < CACHED_COLS.length) {
-            return CACHED_COLS[col];
-        }
-        return convertNumToColStringImpl(col);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private static String convertNumToColStringImpl(int col) {
         // Excel counts column A as the 1st column, we
         // treat it as the 0th one
         int excelColNum = col + 1;
-
         final int MAX_COL_CHARS = 3;
         final byte[] colRef = new byte[MAX_COL_CHARS];
         int colRemain = excelColNum;
@@ -59,7 +55,6 @@ final class CellAddress {
                 thisPart = COL_RADIX;
             }
             colRemain = (colRemain - thisPart) / COL_RADIX;
-
             colRef[pos--] = (byte) (thisPart + (int) 'A' - 1);
         }
         pos++;

@@ -47,18 +47,27 @@ public class PictureAnchor {
     public static final int EMU_PER_CM = 360000;
 
     private final int fromCol;
-    private final int fromColOff; // offset in EMUs
+
+    // offset in EMUs
+    private final int fromColOff;
+
     private final int fromRow;
-    private final int fromRowOff; // offset in EMUs
+
+    // offset in EMUs
+    private final int fromRowOff;
 
     // For two-cell anchor
     private final Integer toCol;
+
     private final Integer toColOff;
+
     private final Integer toRow;
+
     private final Integer toRowOff;
 
     // For one-cell anchor (explicit size in EMUs)
     private final Long widthEmu;
+
     private final Long heightEmu;
 
     /**
@@ -71,8 +80,7 @@ public class PictureAnchor {
      * @return A new PictureAnchor configured for one-cell anchoring
      */
     public static PictureAnchor oneCellAnchor(int row, int col, int widthPx, int heightPx) {
-        return new PictureAnchor(col, 0, row, 0, null, null, null, null,
-                (long) widthPx * EMU_PER_PIXEL, (long) heightPx * EMU_PER_PIXEL);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -86,11 +94,8 @@ public class PictureAnchor {
      * @param heightPx  Image height in pixels
      * @return A new PictureAnchor configured for one-cell anchoring with offset
      */
-    public static PictureAnchor oneCellAnchor(int row, int col, int colOffPx, int rowOffPx,
-                                               int widthPx, int heightPx) {
-        return new PictureAnchor(col, colOffPx * EMU_PER_PIXEL, row, rowOffPx * EMU_PER_PIXEL,
-                null, null, null, null,
-                (long) widthPx * EMU_PER_PIXEL, (long) heightPx * EMU_PER_PIXEL);
+    public static PictureAnchor oneCellAnchor(int row, int col, int colOffPx, int rowOffPx, int widthPx, int heightPx) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -103,7 +108,7 @@ public class PictureAnchor {
      * @return A new PictureAnchor configured for two-cell anchoring
      */
     public static PictureAnchor twoCellAnchor(int fromRow, int fromCol, int toRow, int toCol) {
-        return new PictureAnchor(fromCol, 0, fromRow, 0, toCol, 0, toRow, 0, null, null);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -119,15 +124,11 @@ public class PictureAnchor {
      * @param toRowOffPx   Ending row offset in pixels
      * @return A new PictureAnchor configured for two-cell anchoring with offsets
      */
-    public static PictureAnchor twoCellAnchor(int fromRow, int fromCol, int fromColOffPx, int fromRowOffPx,
-                                               int toRow, int toCol, int toColOffPx, int toRowOffPx) {
-        return new PictureAnchor(fromCol, fromColOffPx * EMU_PER_PIXEL, fromRow, fromRowOffPx * EMU_PER_PIXEL,
-                toCol, toColOffPx * EMU_PER_PIXEL, toRow, toRowOffPx * EMU_PER_PIXEL, null, null);
+    public static PictureAnchor twoCellAnchor(int fromRow, int fromCol, int fromColOffPx, int fromRowOffPx, int toRow, int toCol, int toColOffPx, int toRowOffPx) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    private PictureAnchor(int fromCol, int fromColOff, int fromRow, int fromRowOff,
-                          Integer toCol, Integer toColOff, Integer toRow, Integer toRowOff,
-                          Long widthEmu, Long heightEmu) {
+    private PictureAnchor(int fromCol, int fromColOff, int fromRow, int fromRowOff, Integer toCol, Integer toColOff, Integer toRow, Integer toRowOff, Long widthEmu, Long heightEmu) {
         this.fromCol = fromCol;
         this.fromColOff = fromColOff;
         this.fromRow = fromRow;
@@ -146,51 +147,41 @@ public class PictureAnchor {
      * @return true if two-cell anchor, false if one-cell anchor
      */
     public boolean isTwoCellAnchor() {
-        return toCol != null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Write the "from" position element.
      */
     void writeFrom(Writer w) throws IOException {
-        w.append("<xdr:from>");
-        w.append("<xdr:col>").append(fromCol).append("</xdr:col>");
-        w.append("<xdr:colOff>").append(fromColOff).append("</xdr:colOff>");
-        w.append("<xdr:row>").append(fromRow).append("</xdr:row>");
-        w.append("<xdr:rowOff>").append(fromRowOff).append("</xdr:rowOff>");
-        w.append("</xdr:from>");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Write the "to" position element (for two-cell anchors).
      */
     void writeTo(Writer w) throws IOException {
-        w.append("<xdr:to>");
-        w.append("<xdr:col>").append(toCol).append("</xdr:col>");
-        w.append("<xdr:colOff>").append(toColOff).append("</xdr:colOff>");
-        w.append("<xdr:row>").append(toRow).append("</xdr:row>");
-        w.append("<xdr:rowOff>").append(toRowOff).append("</xdr:rowOff>");
-        w.append("</xdr:to>");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Write the extent element (for one-cell anchors).
      */
     void writeExt(Writer w) throws IOException {
-        w.append("<xdr:ext cx=\"").append(widthEmu).append("\" cy=\"").append(heightEmu).append("\"/>");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Get width in EMUs (for one-cell anchors).
      */
     public Long getWidthEmu() {
-        return widthEmu;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Get height in EMUs (for one-cell anchors).
      */
     public Long getHeightEmu() {
-        return heightEmu;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

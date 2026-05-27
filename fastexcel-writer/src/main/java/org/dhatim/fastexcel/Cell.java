@@ -21,7 +21,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.Date;
-
 import static org.dhatim.fastexcel.CellAddress.convertNumToColString;
 
 /**
@@ -48,84 +47,43 @@ class Cell implements Ref {
      * @throws IOException If an I/O error occurs.
      */
     void write(Writer w, int r, int c) throws IOException {
-        if (value != null || style != 0) {
-            w.append("<c r=\"").append(convertNumToColString(c)).append(r + 1).append('\"');
-            if (style != 0) {
-                w.append(" s=\"").append(style).append('\"');
-            }
-            if (value != null && !(value instanceof Formula)) {
-                w.append(" t=\"").append(getCellType(value)).append('\"');
-            }
-            w.append(">");
-            if (value instanceof Formula) {
-                w.append("<f>").append(((Formula) value).getExpression()).append("</f>");
-            } else if (value instanceof RichText) {
-                ((RichText) value).write(w);
-            } else if (value instanceof String) {
-                w.append("<is><t>").appendEscaped((String) value).append("</t></is>");
-            } else if (value != null) {
-                w.append("<v>");
-                if (value instanceof CachedString) {
-                    w.append(((CachedString) value).getIndex());
-                } else if (value instanceof Integer) {
-                    w.append((int) value);
-                } else if (value instanceof Long) {
-                    w.append((long) value);
-                } else if (value instanceof Double) {
-                    w.append((double) value);
-                } else if (value instanceof Boolean) {
-                    w.append((Boolean) value ? '1' : '0');
-                } else {
-                    w.append(value.toString());
-                }
-                w.append("</v>");
-            }
-            w.append("</c>");
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     static String getCellType(Object value) {
-        if (value instanceof CachedString) {
-            return "s";
-        } else if (value instanceof Boolean) {
-            return "b";
-        } else if (value instanceof String || value instanceof RichText) {
-            return "inlineStr";
-        } else {
-            return "n";
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     void setValue(Workbook wb, String v) {
-        value = v == null ? null : wb.cacheString(v);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     void setValue(Number v) {
-        value = v;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     void setValue(Boolean v) {
-        value = v;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     void setValue(Date v) {
-        value = v == null ? null : TimestampUtil.convertDate(v);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     void setValue(LocalDateTime v) {
-        value = v == null ? null : TimestampUtil.convertDate(v);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     void setValue(LocalDate v) {
-        value = v == null ? null : TimestampUtil.convertDate(v);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     void setValue(ZonedDateTime v) {
-        value = v == null ? null : TimestampUtil.convertZonedDateTime(v);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     void setValue(Instant v) {
-        value = v == null ? null : TimestampUtil.convertInstant(v);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -134,13 +92,7 @@ class Cell implements Ref {
      * @return Value or {@link Formula}, or {@code null}.
      */
     Object getValue() {
-        Object result;
-        if (value instanceof CachedString) {
-            result = ((CachedString) value).getString();
-        } else {
-            result = value;
-        }
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -149,7 +101,7 @@ class Cell implements Ref {
      * @param expression Formula expression.
      */
     void setFormula(String expression) {
-        value = new Formula(expression);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -158,7 +110,7 @@ class Cell implements Ref {
      * @param v String value.
      */
     void setInlineString(String v) {
-        value = v;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -167,7 +119,7 @@ class Cell implements Ref {
      * @param v Rich inline string value.
      */
     void setInlineString(RichText v) {
-        value = v;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -176,7 +128,7 @@ class Cell implements Ref {
      * @return Cell style.
      */
     int getStyle() {
-        return style;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -185,7 +137,6 @@ class Cell implements Ref {
      * @param style New cell style.
      */
     void setStyle(int style) {
-        this.style = style;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

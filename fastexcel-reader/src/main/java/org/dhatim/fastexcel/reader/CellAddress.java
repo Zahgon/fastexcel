@@ -23,9 +23,11 @@ public final class CellAddress implements Comparable<CellAddress> {
     public static final CellAddress A1 = new CellAddress(0, 0);
 
     private static final char ABSOLUTE_REFERENCE_MARKER = '$';
+
     private static final int COL_RADIX = 'Z' - 'A' + 1;
 
     private final int row;
+
     private final int col;
 
     /**
@@ -51,7 +53,8 @@ public final class CellAddress implements Comparable<CellAddress> {
                 final char c = address.charAt(offset);
                 if (c == ABSOLUTE_REFERENCE_MARKER) {
                     offset++;
-                    break; //next there must be digits
+                    //next there must be digits
+                    break;
                 }
                 if (isAsciiDigit(c)) {
                     break;
@@ -64,77 +67,44 @@ public final class CellAddress implements Comparable<CellAddress> {
     }
 
     public int getRow() {
-        return row;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public int getColumn() {
-        return col;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int compareTo(CellAddress other) {
-        int r = row - other.row;
-        if (r != 0) {
-            return r;
-        }
-        r = col - other.col;
-        return r;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (obj == null || obj.getClass() != getClass()) {
-            return false;
-        }
-        CellAddress other = (CellAddress) obj;
-        return row == other.row && col == other.col;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(row, col);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String toString() {
-        return format(row, col).toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     static StringBuilder format(int row, int col) {
-        return format(new StringBuilder(), row, col);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     static StringBuilder format(StringBuilder sb, int row, int col) {
-        sb.append(convertNumToColString(col));
-        sb.append(row + 1);
-        return sb;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public static String convertNumToColString(int col) {
-        // Excel counts column A as the 1st column, we
-        // treat it as the 0th one
-        int excelColNum = col + 1;
-
-        final int MAX_COL_CHARS = 3;
-        final byte[] colRef = new byte[MAX_COL_CHARS];
-        int colRemain = excelColNum;
-        int pos = 2;
-        while (colRemain > 0) {
-            int thisPart = colRemain % COL_RADIX;
-            if (thisPart == 0) {
-                thisPart = COL_RADIX;
-            }
-            colRemain = (colRemain - thisPart) / COL_RADIX;
-
-            colRef[pos--] = (byte) (thisPart + (int) 'A' - 1);
-        }
-        pos++;
-        return new String(colRef, pos, (MAX_COL_CHARS - pos), StandardCharsets.ISO_8859_1);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 
     private static final boolean isAsciiLowerCase(char c) {
         return 'a' <= c && c <= 'z';
@@ -157,5 +127,4 @@ public final class CellAddress implements Comparable<CellAddress> {
         }
         throw new IllegalArgumentException("Unexpected char: " + c);
     }
-
 }

@@ -6,11 +6,15 @@ import java.io.IOException;
  * A ConditionalFormattingRule defines a base class of conditional formatting rule for a worksheet
  */
 public abstract class ConditionalFormattingRule {
+
     protected final String type;
+
     protected int priority;
+
     protected final boolean stopIfTrue;
+
     protected int dxfId;
-    
+
     /**
      * Constructor
      *
@@ -28,7 +32,7 @@ public abstract class ConditionalFormattingRule {
      * @param priority The user interface display priority
      */
     void setPriority(int priority) {
-        this.priority = priority;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -37,7 +41,7 @@ public abstract class ConditionalFormattingRule {
      * @param dxfId The id of the style to apply when the conditional formatting rule criteria is met
      */
     void setDxfId(int dxfId) {
-        this.dxfId = dxfId;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**

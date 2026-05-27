@@ -41,16 +41,25 @@ public final class RichText {
      * (i.e. the property is omitted from {@code <rPr>}).
      */
     public static final class Run {
-        private final String text;
-        private final boolean bold;
-        private final boolean italic;
-        private final boolean underlined;
-        private final Integer fontSize;   // points; null = inherit
-        private final String fontName;    // null = inherit
-        private final String fontColor;   // RRGGBB or AARRGGBB hex; null = inherit
 
-        Run(String text, boolean bold, boolean italic, boolean underlined,
-            Integer fontSize, String fontName, String fontColor) {
+        private final String text;
+
+        private final boolean bold;
+
+        private final boolean italic;
+
+        private final boolean underlined;
+
+        // points; null = inherit
+        private final Integer fontSize;
+
+        // null = inherit
+        private final String fontName;
+
+        // RRGGBB or AARRGGBB hex; null = inherit
+        private final String fontColor;
+
+        Run(String text, boolean bold, boolean italic, boolean underlined, Integer fontSize, String fontName, String fontColor) {
             this.text = text == null ? "" : text;
             this.bold = bold;
             this.italic = italic;
@@ -61,37 +70,11 @@ public final class RichText {
         }
 
         public String getText() {
-            return text;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         void write(Writer w) throws IOException {
-            w.append("<r>");
-            boolean hasProps = bold || italic || underlined
-                    || fontSize != null || fontName != null || fontColor != null;
-            if (hasProps) {
-                w.append("<rPr>");
-                if (bold) {
-                    w.append("<b/>");
-                }
-                if (italic) {
-                    w.append("<i/>");
-                }
-                if (underlined) {
-                    w.append("<u/>");
-                }
-                if (fontSize != null) {
-                    w.append("<sz val=\"").append(fontSize.intValue()).append("\"/>");
-                }
-                if (fontColor != null) {
-                    w.append("<color rgb=\"").appendEscaped(fontColor).append("\"/>");
-                }
-                if (fontName != null) {
-                    w.append("<rFont val=\"").appendEscaped(fontName).append("\"/>");
-                }
-                w.append("</rPr>");
-            }
-            // xml:space="preserve" so leading/trailing whitespace and newlines survive.
-            w.append("<t xml:space=\"preserve\">").appendEscaped(text).append("</t></r>");
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -101,13 +84,21 @@ public final class RichText {
      * from the cell style.
      */
     public static final class RunBuilder {
+
         private final Builder parent;
+
         private final String text;
+
         private boolean bold;
+
         private boolean italic;
+
         private boolean underlined;
+
         private Integer fontSize;
+
         private String fontName;
+
         private String fontColor;
 
         RunBuilder(Builder parent, String text) {
@@ -116,28 +107,23 @@ public final class RichText {
         }
 
         public RunBuilder bold() {
-            this.bold = true;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public RunBuilder italic() {
-            this.italic = true;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public RunBuilder underlined() {
-            this.underlined = true;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public RunBuilder fontSize(int points) {
-            this.fontSize = points;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public RunBuilder fontName(String name) {
-            this.fontName = name;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -147,19 +133,22 @@ public final class RichText {
          * @return This builder.
          */
         public RunBuilder fontColor(String hexRgbOrArgb) {
-            this.fontColor = hexRgbOrArgb;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        /** Finishes this run and returns the parent builder for chaining. */
+        /**
+         * Finishes this run and returns the parent builder for chaining.
+         */
         public Builder end() {
-            parent.runs.add(new Run(text, bold, italic, underlined, fontSize, fontName, fontColor));
-            return parent;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
-    /** Builder for {@link RichText}. */
+    /**
+     * Builder for {@link RichText}.
+     */
     public static final class Builder {
+
         private final List<Run> runs = new ArrayList<>();
 
         Builder() {
@@ -172,17 +161,19 @@ public final class RichText {
          * @return A {@link RunBuilder} for the new run.
          */
         public RunBuilder run(String text) {
-            return new RunBuilder(this, text);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public RichText build() {
-            return new RichText(runs);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
-    /** Returns a new {@link Builder}. */
+    /**
+     * Returns a new {@link Builder}.
+     */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private final List<Run> runs;
@@ -196,17 +187,13 @@ public final class RichText {
     }
 
     public List<Run> getRuns() {
-        return Collections.unmodifiableList(runs);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Writes the {@code <is>...</is>} body. The enclosing {@code <c>} is the caller's job.
      */
     void write(Writer w) throws IOException {
-        w.append("<is>");
-        for (Run run : runs) {
-            run.write(w);
-        }
-        w.append("</is>");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

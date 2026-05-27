@@ -32,22 +32,25 @@ import java.util.Date;
 public final class TimestampUtil {
 
     private static final double BAD_DATE = -1;
+
     @Deprecated
     public static final int SECONDS_PER_MINUTE = 60;
+
     @Deprecated
     public static final int MINUTES_PER_HOUR = 60;
+
     @Deprecated
     public static final int HOURS_PER_DAY = 24;
+
     @Deprecated
     public static final int SECONDS_PER_DAY = (HOURS_PER_DAY * MINUTES_PER_HOUR * SECONDS_PER_MINUTE);
+
     @Deprecated
     public static final long DAY_MILLISECONDS = SECONDS_PER_DAY * 1000L;
 
     private static final long DAYS_TO_MILLIS = 86_400_000L;
-    private static final long EXCEL_EPOCH_MILLIS = LocalDate.of(1899, 12, 31)
-            .atStartOfDay(ZoneOffset.UTC)
-            .toInstant()
-            .toEpochMilli();
+
+    private static final long EXCEL_EPOCH_MILLIS = LocalDate.of(1899, 12, 31).atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli();
 
     private static double epochMillisToExcel(long epochMillis) {
         double value = (epochMillis - EXCEL_EPOCH_MILLIS) / (double) DAYS_TO_MILLIS;
@@ -69,7 +72,7 @@ public final class TimestampUtil {
      * @return Serial number value.
      */
     public static Double convertDate(Date date) {
-        return convertDate(date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -79,16 +82,7 @@ public final class TimestampUtil {
      * @return Serial number value.
      */
     public static Double convertDate(LocalDateTime localDateTime) {
-        if (localDateTime.getYear() < 1900) {
-            return BAD_DATE;
-        }
-        LocalTime time = localDateTime.toLocalTime();
-        long epochMillis = localDateTime.toLocalDate().toEpochDay() * DAYS_TO_MILLIS
-                + time.getHour() * 3_600_000L
-                + time.getMinute() * 60_000L
-                + time.getSecond() * 1_000L
-                + time.getNano() / 1_000_000L;
-        return epochMillisToExcel(epochMillis);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -98,10 +92,7 @@ public final class TimestampUtil {
      * @return Serial number value.
      */
     public static Double convertDate(LocalDate localDate) {
-        if (localDate.getYear() < 1900) {
-            return BAD_DATE;
-        }
-        return epochMillisToExcel(localDate.toEpochDay() * DAYS_TO_MILLIS);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -111,7 +102,7 @@ public final class TimestampUtil {
      * @return Serial number value.
      */
     public static Double convertZonedDateTime(ZonedDateTime zonedDateTime) {
-        return convertDate(zonedDateTime.toLocalDateTime());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -122,7 +113,6 @@ public final class TimestampUtil {
      * @return Serial number value.
      */
     public static Double convertInstant(Instant instant) {
-        return epochMillisToExcel(instant.toEpochMilli());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -25,7 +25,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 class Pictures {
 
     private final List<Picture> pictures = new ArrayList<>();
+
     private final AtomicInteger idCounter = new AtomicInteger(1);
+
     private final Set<ImageType> usedImageTypes = new HashSet<>();
 
     /**
@@ -39,8 +41,7 @@ class Pictures {
      * @return The created Picture
      */
     Picture addPicture(int row, int col, byte[] imageData, int widthPx, int heightPx) {
-        return addPicture(PictureAnchor.oneCellAnchor(row, col, widthPx, heightPx),
-                imageData, null, true);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -54,8 +55,7 @@ class Pictures {
      * @return The created Picture
      */
     Picture addPicture(int fromRow, int fromCol, int toRow, int toCol, byte[] imageData) {
-        return addPicture(PictureAnchor.twoCellAnchor(fromRow, fromCol, toRow, toCol),
-                imageData, null, true);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -68,45 +68,30 @@ class Pictures {
      * @return The created Picture
      */
     Picture addPicture(PictureAnchor anchor, byte[] imageData, String name, boolean lockAspectRatio) {
-        ImageType imageType = ImageType.fromBytes(imageData);
-        usedImageTypes.add(imageType);
-
-        int id = idCounter.getAndIncrement();
-        Picture picture = new Picture(id, name, anchor, imageData, imageType, lockAspectRatio);
-        pictures.add(picture);
-        return picture;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     boolean isEmpty() {
-        return pictures.isEmpty();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     int size() {
-        return pictures.size();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     Set<ImageType> getUsedImageTypes() {
-        return Collections.unmodifiableSet(usedImageTypes);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     List<Picture> getPictures() {
-        return Collections.unmodifiableList(pictures);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Write the drawing XML file.
      */
     void writeDrawing(Writer w) throws IOException {
-        w.append("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>");
-        w.append("<xdr:wsDr ");
-        w.append("xmlns:xdr=\"http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing\" ");
-        w.append("xmlns:a=\"http://schemas.openxmlformats.org/drawingml/2006/main\">");
-
-        for (Picture picture : pictures) {
-            picture.write(w);
-        }
-
-        w.append("</xdr:wsDr>");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -116,22 +101,7 @@ class Pictures {
      * @param sheetIndex The sheet index (1-based)
      */
     void writeDrawingRels(Writer w, int sheetIndex) throws IOException {
-        w.append("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>");
-        w.append("<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\">");
-
-        int imageIndex = 1;
-        for (Picture picture : pictures) {
-            String rId = "rId" + imageIndex;
-            picture.setRelationshipId(rId);
-            String imageName = "image" + sheetIndex + "_" + imageIndex + "." + picture.getImageType().getExtension();
-
-            w.append("<Relationship Id=\"").append(rId).append("\" ");
-            w.append("Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" ");
-            w.append("Target=\"../media/").append(imageName).append("\"/>");
-            imageIndex++;
-        }
-
-        w.append("</Relationships>");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -141,11 +111,6 @@ class Pictures {
      * @param sheetIndex The sheet index (1-based)
      */
     void writeMediaFiles(Workbook workbook, int sheetIndex) throws IOException {
-        int imageIndex = 1;
-        for (Picture picture : pictures) {
-            String imageName = "image" + sheetIndex + "_" + imageIndex + "." + picture.getImageType().getExtension();
-            workbook.writeBinaryFile("xl/media/" + imageName, picture.getImageData());
-            imageIndex++;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

@@ -21,7 +21,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.stream.Stream;
-
 import static java.util.Comparator.comparingInt;
 
 /**
@@ -34,6 +33,7 @@ class StringCache {
      * Number of strings, including duplicates.
      */
     private long count;
+
     /**
      * Map giving string index for each unique string.
      */
@@ -46,16 +46,7 @@ class StringCache {
      * @return Cached string.
      */
     CachedString cacheString(String s) {
-        CachedString result;
-        synchronized (strings) {
-            ++count;
-            result = strings.get(s);
-            if (result == null) {
-                result = new CachedString(s, strings.size());
-                strings.put(s, result);
-            }
-        }
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -65,14 +56,6 @@ class StringCache {
      * @throws IOException If an I/O error occurs.
      */
     void write(Writer w) throws IOException {
-        w.append("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><sst xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" count=\"").append(count).append("\" uniqueCount=\"").append(strings.size()).append("\">");
-        Stream<String> sortedStrings = strings.entrySet().stream()
-                .sorted(comparingInt(e -> e.getValue().getIndex()))
-                .map(Entry::getKey);
-        Iterator<String> it = sortedStrings.iterator();
-        while (it.hasNext()) {
-            w.append("<si><t xml:space=\"preserve\">").appendEscaped(it.next()).append("</t></si>");
-        }
-        w.append("</sst>");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

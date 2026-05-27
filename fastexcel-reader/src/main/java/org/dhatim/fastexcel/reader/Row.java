@@ -23,8 +23,11 @@ import java.util.stream.Stream;
 public class Row implements Iterable<Cell> {
 
     private final int rowNum;
+
     private final List<Cell> cells;
+
     private final int physicalCellCount;
+
     private final boolean isHidden;
 
     Row(int rowNum, int physicalCellCount, List<Cell> cells, boolean isHidden) {
@@ -41,34 +44,31 @@ public class Row implements Iterable<Cell> {
      * @throws IndexOutOfBoundsException if index is invalid
      */
     public Cell getCell(int index) {
-        return cells.get(index);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Cell getCell(CellAddress address) {
-        if (rowNum -1 != address.getRow()) {
-            throw new IllegalArgumentException("The given address " + address + " concerns another row (" + rowNum + ")");
-        }
-        return getCell(address.getColumn());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public List<Cell> getCells(int beginIndex, int endIndex) {
-        return cells.subList(beginIndex, endIndex);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Optional<Cell> getOptionalCell(int index) {
-        return index < 0 || index >= cells.size() ? Optional.empty() : Optional.ofNullable(cells.get(index));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Optional<Cell> getFirstNonEmptyCell() {
-        return stream().filter(Objects::nonNull).filter(cell -> !cell.getText().isEmpty()).findFirst();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public int getCellCount() {
-        return cells.size();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public boolean hasCell(int index) {
-        return index >= 0 && index < cells.size() && cells.get(index) != null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -76,11 +76,11 @@ public class Row implements Iterable<Cell> {
      * @return the row number (1 based)
      */
     public int getRowNum() {
-        return rowNum;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public int getPhysicalCellCount() {
-        return physicalCellCount;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -89,45 +89,44 @@ public class Row implements Iterable<Cell> {
      * @return {@code true} if the row is hidden; {@code false} otherwise
      */
     public boolean isHidden() {
-        return isHidden;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String toString() {
-        return "Row " + rowNum + ' ' + cells;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Iterator<Cell> iterator() {
-        return cells.iterator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Stream<Cell> stream() {
-        return cells.stream();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Optional<String> getCellAsString(int cellIndex) {
-        return getOptionalCell(cellIndex).map(Cell::asString);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Optional<LocalDateTime> getCellAsDate(int cellIndex) {
-        return getOptionalCell(cellIndex).map(Cell::asDate);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Optional<BigDecimal> getCellAsNumber(int cellIndex) {
-        return getOptionalCell(cellIndex).map(Cell::asNumber);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Optional<Boolean> getCellAsBoolean(int cellIndex) {
-        return getOptionalCell(cellIndex).map(Cell::asBoolean);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public String getCellText(int cellIndex) {
-        return getOptionalCell(cellIndex).map(Cell::getText).orElse("");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Optional<String> getCellRawValue(int cellIndex) {
-        return getOptionalCell(cellIndex).map(Cell::getRawValue);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

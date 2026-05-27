@@ -32,11 +32,17 @@ import java.util.function.Function;
 final class StyleCache {
 
     private final ConcurrentMap<String, Integer> valueFormattings = new ConcurrentHashMap<>();
+
     private final ConcurrentMap<Font, Integer> fonts = new ConcurrentHashMap<>();
+
     private final ConcurrentMap<Fill, Integer> fills = new ConcurrentHashMap<>();
+
     private final ConcurrentMap<Border, Integer> borders = new ConcurrentHashMap<>();
+
     private final ConcurrentMap<Style, Integer> styles = new ConcurrentHashMap<>();
+
     private final ConcurrentMap<Integer, Style> styleIndexToStyle = new ConcurrentHashMap<>();
+
     private final ConcurrentMap<DifferentialFormat, Integer> dxfs = new ConcurrentHashMap<>();
 
     /**
@@ -93,10 +99,7 @@ final class StyleCache {
      * @return Index of the cached format.
      */
     int cacheValueFormatting(String s) {
-        if (s == null) {
-            return 0;
-        }
-        return cacheStuff(valueFormattings, s, k -> valueFormattings.size() + 165);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -106,7 +109,7 @@ final class StyleCache {
      * @return Index of the cached font.
      */
     int cacheFont(Font f) {
-        return cacheStuff(fonts, f);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -116,7 +119,7 @@ final class StyleCache {
      * @return Index of the cached fill pattern.
      */
     int cacheFill(Fill f) {
-        return cacheStuff(fills, f);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -126,7 +129,7 @@ final class StyleCache {
      * @return Index of the cached border.
      */
     int cacheBorder(Border b) {
-        return cacheStuff(borders, b);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -136,18 +139,15 @@ final class StyleCache {
      * @return Index of the cached fill pattern.
      */
     int cacheDxf(DifferentialFormat f) {
-        return cacheStuff(dxfs, f);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     int mergeAndCacheStyle(int currentStyle, String numberingFormat, Font font, Fill fill, Border border, Alignment alignment, Protection protection) {
-        Style original = styleIndexToStyle.get(currentStyle);
-        Style s = new Style(original, cacheValueFormatting(numberingFormat), cacheFont(font), cacheFill(fill), cacheBorder(border), alignment, protection);
-        return cacheStyle(s, k -> styles.size());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     void replaceDefaultFont(Font font) {
-        fonts.entrySet().removeIf(entry->entry.getValue()==0);
-        fonts.putIfAbsent(font,0);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -177,16 +177,6 @@ final class StyleCache {
      * @throws IOException If an I/O error occurs.
      */
     void write(Writer w) throws IOException {
-        w.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?><styleSheet xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\">");
-        writeCache(w, valueFormattings, "numFmts", e -> w.append("<numFmt numFmtId=\"").append(e.getValue()).append("\" formatCode=\"").append(XmlEscapeHelper.escape(e.getKey())).append("\"/>"));
-        writeCache(w, fonts, "fonts", e -> e.getKey().write(w));
-        writeCache(w, fills, "fills", e -> e.getKey().write(w));
-        writeCache(w, borders, "borders", e -> e.getKey().write(w));
-        w.append("<cellStyleXfs count=\"1\"><xf numFmtId=\"0\" fontId=\"0\" fillId=\"0\" borderId=\"0\"/></cellStyleXfs>");
-        writeCache(w, styles, "cellXfs", e -> e.getKey().write(w));
-        writeCache(w, dxfs, "dxfs", e -> {
-            e.getKey().write(w);
-        });
-        w.append("</styleSheet>");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

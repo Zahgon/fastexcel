@@ -16,7 +16,6 @@
 package org.dhatim.fastexcel.reader;
 
 import static org.dhatim.fastexcel.reader.DefaultXMLInputFactory.factory;
-
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -28,53 +27,46 @@ import java.util.Optional;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 import java.util.function.Function;
-
 import javax.xml.stream.XMLStreamException;
 
 class RowSpliterator implements Spliterator<Row> {
 
     private final SimpleXmlReader r;
+
     private final ReadableWorkbook workbook;
 
     private final HashMap<Integer, BaseFormulaCell> sharedFormula = new HashMap<>();
+
     private final HashMap<CellRangeAddress, String> arrayFormula = new HashMap<>();
+
     private int rowCapacity = 16;
+
     private int trackedRowIndex = 0;
 
     public RowSpliterator(ReadableWorkbook workbook, InputStream inputStream) throws XMLStreamException {
         this.workbook = workbook;
         this.r = new SimpleXmlReader(factory, inputStream);
-
         r.goTo("sheetData");
     }
 
     @Override
     public boolean tryAdvance(Consumer<? super Row> action) {
-        try {
-            if (hasNext()) {
-                action.accept(next());
-                return true;
-            } else {
-                return false;
-            }
-        } catch (XMLStreamException e) {
-            throw new ExcelReaderException(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Spliterator<Row> trySplit() {
-        return null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public long estimateSize() {
-        return Long.MAX_VALUE;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int characteristics() {
-        return DISTINCT | IMMUTABLE | NONNULL | ORDERED;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private boolean hasNext() throws XMLStreamException {
@@ -85,31 +77,25 @@ class RowSpliterator implements Spliterator<Row> {
         }
     }
 
-
     private Row next() throws XMLStreamException {
         if (!"row".equals(r.getLocalName())) {
             throw new NoSuchElementException();
         }
-
         int trackedColIndex = 0;
         int rowIndex = getRowIndexWithFallback(trackedRowIndex);
         String hiddenAttribute = r.getAttribute("hidden");
         boolean isHidden = "1".equals(hiddenAttribute) || "true".equals(hiddenAttribute);
-
         List<Cell> cells = new ArrayList<>(rowCapacity);
         int physicalCellCount = 0;
-
         while (r.goTo(() -> r.isStartElement("c") || r.isEndElement("row"))) {
             if ("row".equals(r.getLocalName())) {
                 break;
             }
-
             Cell cell = parseCell(trackedColIndex++);
             CellAddress addr = cell.getAddress();
             // we may have to adjust because we may have skipped blanks
             trackedColIndex = addr.getColumn() + 1;
             ensureSize(cells, addr.getColumn() + 1);
-
             cells.set(addr.getColumn(), cell);
             physicalCellCount++;
         }
@@ -125,9 +111,7 @@ class RowSpliterator implements Spliterator<Row> {
 
     private CellAddress getCellAddressWithFallback(int trackedColIndex, int trackedRowIndex) {
         String cellRefOrNull = r.getAttribute("r");
-        return cellRefOrNull != null ?
-                new CellAddress(cellRefOrNull) :
-                new CellAddress(trackedRowIndex, trackedColIndex);
+        return cellRefOrNull != null ? new CellAddress(cellRefOrNull) : new CellAddress(trackedRowIndex, trackedColIndex);
     }
 
     private Cell parseCell(int trackedColIndex) throws XMLStreamException {
@@ -143,7 +127,6 @@ class RowSpliterator implements Spliterator<Row> {
                 formatString = workbook.getNumFmtIdToFormat().get(formatId);
             }
         }
-
         if ("inlineStr".equals(type)) {
             return parseInlineStr(addr);
         } else if ("s".equals(type)) {
@@ -153,11 +136,9 @@ class RowSpliterator implements Spliterator<Row> {
         }
     }
 
-    private Cell parseOther(CellAddress addr, String type, String dataFormatId, String dataFormatString)
-            throws XMLStreamException {
+    private Cell parseOther(CellAddress addr, String type, String dataFormatId, String dataFormatString) throws XMLStreamException {
         CellType definedType = parseType(type);
         Function<String, ?> parser = getParserForType(definedType);
-
         Object value = null;
         String formula = null;
         String rawValue = null;
@@ -195,11 +176,9 @@ class RowSpliterator implements Spliterator<Row> {
                 break;
             }
         }
-
         if (formula == null || "".equals(formula)) {
             formula = getArrayFormula(addr).orElse(null);
         }
-
         if (formula == null && value == null && definedType == CellType.NUMBER) {
             return new Cell(workbook, CellType.EMPTY, null, addr, null, rawValue);
         } else {
@@ -229,10 +208,10 @@ class RowSpliterator implements Spliterator<Row> {
                 stringLiteral = !stringLiteral;
             }
             if (stringLiteral) {
-                continue;// Skip characters in quotes
+                // Skip characters in quotes
+                continue;
             }
             if (c >= 'A' && c <= 'Z' || c == '$') {
-
                 res.append(baseFormula.substring(start, end));
                 start = end;
                 end++;
@@ -256,11 +235,9 @@ class RowSpliterator implements Spliterator<Row> {
                 }
             }
         }
-
         if (start < baseFormula.length()) {
             res.append(baseFormula.substring(start));
         }
-
         return res.toString();
     }
 
@@ -271,7 +248,6 @@ class RowSpliterator implements Spliterator<Row> {
         CellAddress cellAddress = new CellAddress(cellID);
         int fCol = cellAddress.getColumn();
         int fRow = cellAddress.getRow();
-
         String signCol = "", signRow = "";
         if (cellID.indexOf("$") == 0) {
             signCol = "$";
@@ -288,7 +264,6 @@ class RowSpliterator implements Spliterator<Row> {
         String colName = CellAddress.convertNumToColString(fCol);
         return signCol + colName + signRow + (++fRow);
     }
-
 
     private Cell parseString(CellAddress addr) throws XMLStreamException {
         r.goTo(() -> r.isStartElement("v") || r.isEndElement("c"));
@@ -339,7 +314,7 @@ class RowSpliterator implements Spliterator<Row> {
     }
 
     private CellType parseType(String type) {
-        switch (type) {
+        switch(type) {
             case "b":
                 return CellType.BOOLEAN;
             case "e":
@@ -356,7 +331,7 @@ class RowSpliterator implements Spliterator<Row> {
     }
 
     private Function<String, ?> getParserForType(CellType type) {
-        switch (type) {
+        switch(type) {
             case BOOLEAN:
                 return RowSpliterator::parseBoolean;
             case NUMBER:
@@ -395,5 +370,4 @@ class RowSpliterator implements Spliterator<Row> {
             list.add(null);
         }
     }
-
 }

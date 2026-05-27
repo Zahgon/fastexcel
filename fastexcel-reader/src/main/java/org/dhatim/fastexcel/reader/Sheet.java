@@ -23,14 +23,18 @@ import java.util.stream.Stream;
 public class Sheet {
 
     private final ReadableWorkbook workbook;
+
     private final int index;
+
     private final String id;
+
     private final String stableId;
+
     private final String name;
+
     private final SheetVisibility visibility;
 
-    Sheet(ReadableWorkbook workbook, int index, String id, String stableId,
-          String name, SheetVisibility visibility) {
+    Sheet(ReadableWorkbook workbook, int index, String id, String stableId, String name, SheetVisibility visibility) {
         this.workbook = workbook;
         this.index = index;
         this.id = id;
@@ -40,33 +44,30 @@ public class Sheet {
     }
 
     public int getIndex() {
-        return index;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public String getId() {
-        return id;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public String getStableId() {
-        return stableId;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public String getName() {
-        return name;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public SheetVisibility getVisibility() {
-        return visibility;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Stream<Row> openStream() throws IOException {
-        return workbook.openStream(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public List<Row> read() throws IOException {
-        try (Stream<Row> stream = openStream()) {
-            return stream.collect(Collectors.toList());
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

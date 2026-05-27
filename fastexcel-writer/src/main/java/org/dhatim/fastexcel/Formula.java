@@ -40,7 +40,6 @@ class Formula {
      * @return Expression.
      */
     String getExpression() {
-        return expression;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -37,10 +37,12 @@ class Fill {
      * Pattern type.
      */
     private final String patternType;
+
     /**
      * RGB fill color.
      */
     private final String colorRgb;
+
     /**
      * Foreground/background selection.
      */
@@ -68,7 +70,7 @@ class Fill {
      * @return New pattern fill.
      */
     static Fill fromColor(String fgColorRgb) {
-        return fromColor(fgColorRgb, true);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -79,24 +81,17 @@ class Fill {
      * @return New pattern fill.
      */
     static Fill fromColor(String colorRgb, boolean fg) {
-        return new Fill("solid", colorRgb, fg);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(patternType, colorRgb, fg);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(Object obj) {
-        boolean result;
-        if (obj != null && obj.getClass() == this.getClass()) {
-            Fill other = (Fill) obj;
-            result = Objects.equals(patternType, other.patternType) && Objects.equals(colorRgb, other.colorRgb) && Objects.equals(fg, other.fg);
-        } else {
-            result = false;
-        }
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -106,12 +101,6 @@ class Fill {
      * @throws IOException If an I/O error occurs.
      */
     void write(Writer w) throws IOException {
-        w.append("<fill><patternFill patternType=\"").append(patternType).append('\"');
-        if (colorRgb == null) {
-            w.append("/>");
-        } else {
-            w.append("><").append(fg ? "fg" : "bg").append("Color rgb=\"").append(colorRgb).append("\"/></patternFill>");
-        }
-        w.append("</fill>");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

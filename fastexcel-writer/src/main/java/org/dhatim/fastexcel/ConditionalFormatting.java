@@ -3,7 +3,9 @@ package org.dhatim.fastexcel;
 import java.io.IOException;
 
 public class ConditionalFormatting {
+
     private final Range range;
+
     private final ConditionalFormattingRule conditionalFormattingRule;
 
     /**
@@ -16,16 +18,16 @@ public class ConditionalFormatting {
         this.range = range;
         this.conditionalFormattingRule = conditionalFormattingRule;
     }
-    
+
     /**
      * Get the conditional formatting rule of this conditional formatting.
      *
      * @return ConditionalFormattingRule conditional formatting rule.
      */
     ConditionalFormattingRule getConditionalFormattingRule() {
-        return this.conditionalFormattingRule;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-    
+
     /**
      * Write this conditionalFormatting as an XML element.
      *
@@ -33,8 +35,6 @@ public class ConditionalFormatting {
      * @throws IOException If an I/O error occurs.
      */
     void write(Writer w) throws IOException {
-        w.append("<conditionalFormatting sqref=\"").append(range.toString()).append("\">");
-        conditionalFormattingRule.write(w);
-        w.append("</conditionalFormatting>");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

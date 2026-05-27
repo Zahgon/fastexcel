@@ -6,15 +6,23 @@ import java.io.IOException;
  * A CustomDataValidation defines a DataValidation for a worksheet of type = "custom"
  */
 public class CustomDataValidation implements DataValidation {
+
     private final static String TYPE = "custom";
+
     private final Range range;
+
     private final Formula formula;
 
     private boolean allowBlank = true;
+
     private boolean showDropdown = true;
+
     private DataValidationErrorStyle errorStyle = DataValidationErrorStyle.INFORMATION;
+
     private boolean showErrorMessage = false;
+
     private String errorTitle;
+
     private String error;
 
     /**
@@ -35,8 +43,7 @@ public class CustomDataValidation implements DataValidation {
      * @return this CustomDataValidation
      */
     public CustomDataValidation allowBlank(boolean allowBlank) {
-        this.allowBlank = allowBlank;
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -47,8 +54,7 @@ public class CustomDataValidation implements DataValidation {
      * @return this CustomDataValidation
      */
     public CustomDataValidation showDropdown(boolean showDropdown) {
-        this.showDropdown = showDropdown;
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -58,8 +64,7 @@ public class CustomDataValidation implements DataValidation {
      * @return this CustomDataValidation
      */
     public CustomDataValidation errorStyle(DataValidationErrorStyle errorStyle) {
-        this.errorStyle = errorStyle;
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -69,8 +74,7 @@ public class CustomDataValidation implements DataValidation {
      * @return this CustomDataValidation
      */
     public CustomDataValidation showErrorMessage(boolean showErrorMessage) {
-        this.showErrorMessage = showErrorMessage;
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -80,8 +84,7 @@ public class CustomDataValidation implements DataValidation {
      * @return this CustomDataValidation
      */
     public CustomDataValidation errorTitle(String errorTitle) {
-        this.errorTitle = errorTitle;
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -91,8 +94,7 @@ public class CustomDataValidation implements DataValidation {
      * @return this CustomDataValidation
      */
     public CustomDataValidation error(String error) {
-        this.error = error;
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -103,25 +105,6 @@ public class CustomDataValidation implements DataValidation {
      */
     @Override
     public void write(Writer w) throws IOException {
-        w
-                .append("<dataValidation sqref=\"")
-                .append(range.toString())
-                .append("\" type=\"")
-                .append(TYPE)
-                .append("\" allowBlank=\"")
-                .append(String.valueOf(allowBlank))
-                .append("\" showDropDown=\"")
-                .append(String.valueOf(!showDropdown)) // for some reason, this is the inverse of what you'd expect
-                .append("\" errorStyle=\"")
-                .append(errorStyle.toString())
-                .append("\" showErrorMessage=\"")
-                .append(String.valueOf(showErrorMessage))
-                .append("\" errorTitle=\"")
-                .append(errorTitle)
-                .append("\" error=\"")
-                .append(error)
-                .append("\"><formula1>")
-                .append(formula.getExpression())
-                .append("</formula1></dataValidation>");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

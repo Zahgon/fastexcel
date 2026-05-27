@@ -17,7 +17,6 @@ package org.dhatim.fastexcel;
 
 import java.util.*;
 import java.util.stream.IntStream;
-
 import static org.dhatim.fastexcel.CellAddress.convertNumToColString;
 
 /**
@@ -29,18 +28,22 @@ public class Range implements Ref {
      * Worksheet where this range is defined.
      */
     private final Worksheet worksheet;
+
     /**
      * Top row.
      */
     private final int top;
+
     /**
      * Left column.
      */
     private final int left;
+
     /**
      * Bottom row.
      */
     private final int bottom;
+
     /**
      * Right column.
      */
@@ -63,7 +66,6 @@ public class Range implements Ref {
      */
     Range(Worksheet worksheet, int top, int left, int bottom, int right) {
         this.worksheet = Objects.requireNonNull(worksheet);
-
         // Check limits
         if (top < 0 || top >= Worksheet.MAX_ROWS || bottom < 0 || bottom >= Worksheet.MAX_ROWS) {
             throw new IllegalArgumentException();
@@ -83,7 +85,7 @@ public class Range implements Ref {
      * @return Parent worksheet.
      */
     public Worksheet getWorksheet() {
-        return worksheet;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -92,7 +94,7 @@ public class Range implements Ref {
      * @return Top row.
      */
     public int getTop() {
-        return top;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -101,7 +103,7 @@ public class Range implements Ref {
      * @return Left column.
      */
     public int getLeft() {
-        return left;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -110,7 +112,7 @@ public class Range implements Ref {
      * @return Bottom row.
      */
     public int getBottom() {
-        return bottom;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -119,29 +121,22 @@ public class Range implements Ref {
      * @return Right column.
      */
     public int getRight() {
-        return right;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(worksheet, top, left, bottom, right);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(Object obj) {
-        boolean result;
-        if (obj != null && obj.getClass() == this.getClass()) {
-            Range other = (Range) obj;
-            result = Objects.equals(worksheet, other.worksheet) && Objects.equals(top, other.top) && Objects.equals(left, other.left) && Objects.equals(bottom, other.bottom) && Objects.equals(right, other.right);
-        } else {
-            result = false;
-        }
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String toString() {
-        return convertNumToColString(left) + (top + 1) + ':' + convertNumToColString(right) + (bottom + 1);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -152,7 +147,7 @@ public class Range implements Ref {
      * @return absolute reference
      */
     public String toAbsoluteString() {
-        return '$' + convertNumToColString(left) + '$' + (top + 1) + ":$" + convertNumToColString(right) + '$' + (bottom + 1);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -161,14 +156,14 @@ public class Range implements Ref {
      * @return Newly created style setter.
      */
     public StyleSetter style() {
-        return new StyleSetter(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Merge cells within this range.
      */
     public void merge() {
-        worksheet.merge(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -179,7 +174,7 @@ public class Range implements Ref {
      * @return {@code true} if this range contains the given cell coordinates.
      */
     public boolean contains(int r, int c) {
-        return r >= top && r <= bottom && c >= left && c <= right;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -189,11 +184,11 @@ public class Range implements Ref {
      * @param fill Fill pattern.
      */
     void shadeAlternateRows(Fill fill) {
-        worksheet.shadeAlternateRows(this, fill);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     void shadeRows(Fill fill, int eachNRows) {
-        worksheet.shadeRows(this, fill, eachNRows);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -203,9 +198,7 @@ public class Range implements Ref {
      * @return a new list data validation object
      */
     public ListDataValidation validateWithList(Range listRange) {
-        ListDataValidation listDataValidation = new ListDataValidation(this, listRange);
-        worksheet.addValidation(listDataValidation);
-        return listDataValidation;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -215,9 +208,7 @@ public class Range implements Ref {
      * @return a new list data validation object
      */
     public ListFormulaDataValidation validateWithListByFormula(String formula) {
-        ListFormulaDataValidation listDataValidation = new ListFormulaDataValidation(this, new Formula(formula));
-        worksheet.addValidation(listDataValidation);
-        return listDataValidation;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -227,9 +218,7 @@ public class Range implements Ref {
      * @return a new custom validation
      */
     public CustomDataValidation validateWithFormula(String formula) {
-        CustomDataValidation customDataValidation = new CustomDataValidation(this, new Formula(formula));
-        worksheet.addValidation(customDataValidation);
-        return customDataValidation;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -239,7 +228,7 @@ public class Range implements Ref {
      * @param name string representing the name of this cell range
      */
     public void setName(String name) {
-        worksheet.addNamedRange(this, name);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -248,7 +237,7 @@ public class Range implements Ref {
      * @return {@code true} if the range has a folder scope, {@code false} if it is visible only by the worksheet contains the range
      */
     public boolean isFolderScope() {
-        return folderScope;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -257,7 +246,7 @@ public class Range implements Ref {
      * @param folderScope {@code true} to allow to see the range by all worksheet
      */
     public void setFolderScope(boolean folderScope) {
-        this.folderScope = folderScope;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -266,13 +255,7 @@ public class Range implements Ref {
      * @return Set of styles.
      */
     Set<Integer> getStyles() {
-        Set<Integer> result = new HashSet<>();
-        for (int r = top; r <= bottom; ++r) {
-            for (int c = left; c <= right; ++c) {
-                result.add(getWorksheet().cell(r, c).getStyle());
-            }
-        }
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -281,25 +264,18 @@ public class Range implements Ref {
      * @param styles Map giving new style for each old style.
      */
     void applyStyle(Map<Integer, Integer> styles) {
-        for (int r = top; r <= bottom; ++r) {
-            for (int c = left; c <= right; ++c) {
-                Cell cell = getWorksheet().cell(r, c);
-                cell.setStyle(styles.get(cell.getStyle()));
-            }
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-    public void setHyperlink(HyperLink hyperLink){
-        this.worksheet.value(top,left,hyperLink.getDisplayStr());
-        this.worksheet.addHyperlink(this,hyperLink);
+
+    public void setHyperlink(HyperLink hyperLink) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Table createTable() {
-        int columnCount = this.right - this.left + 1;
-        String[] headers = IntStream.rangeClosed(1, columnCount).mapToObj(i -> "Column" + i).toArray(String[]::new);
-        return createTable(headers);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Table createTable(String... headers) {
-        return worksheet.addTable(this, headers);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }
